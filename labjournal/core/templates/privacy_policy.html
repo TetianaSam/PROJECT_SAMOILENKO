@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zásady ochrany osobních údajů</title>
+    <link rel="stylesheet" href="{% static 'css/privacy_policy.css' %}">
+    {% load bootstrap5 %}
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
+</head>
+<body>
+    <div class="container">
+        <h1>Zásady ochrany osobních údajů</h1>
+
+        <!-- Display the content from the text file -->
+        <div class="policy-content">
+            {% with 'text/privacy_policy.txt'|static as policy_file %}
+            {% include policy_file %}
+            {% endwith %}
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Example Corp. Všechna práva vyhrazena.</p>
+    </footer>
+</body>
+</html>

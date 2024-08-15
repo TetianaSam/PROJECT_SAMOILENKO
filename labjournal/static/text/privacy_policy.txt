@@ -1,0 +1,31 @@
+Privacy Policy
+
+1. Introduction
+   This Privacy Policy explains how Example Corp. handles your personal data.
+
+2. Information We Collect
+   - Personal Identification Information (Name, email address, phone number, etc.)
+   - Payment Information (credit card details, billing address)
+   - Log Data (IP address, browser type, access times)
+
+3. How We Use Your Information
+   - To provide, operate, and maintain our services
+   - To improve, personalize, and expand our services
+   - To communicate with you, either directly or through one of our partners
+
+4. Legal Basis for Processing
+   - Consent: You have given your consent for processing your personal data.
+   - Contract: Processing your data is necessary for the performance of a contract.
+
+5. Data Retention
+   We retain your personal data only for as long as necessary to fulfill the purposes we collected it for.
+
+6. Your Data Protection Rights
+   - The right to access: You have the right to request copies of your personal data.
+   - The right to rectification: You have the right to request that we correct any information you believe is inaccurate.
+
+7. How to Contact Us
+   If you have any questions about this Privacy Policy, please contact us at:
+   Email: support@example.com
+   Phone: +123-456-7890
+   Address: Example Corp., 123 Privacy St., Prague, Czech Republic

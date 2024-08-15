@@ -1,3 +1,5 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="cs">
 <head>
@@ -5,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Zásady ochrany osobních údajů</title>
     <link rel="stylesheet" href="{% static 'css/privacy_policy.css' %}">
+
     {% load bootstrap5 %}
     {% bootstrap_css %}
     {% bootstrap_javascript %}
@@ -15,9 +18,7 @@
 
         <!-- Display the content from the text file -->
         <div class="policy-content">
-            {% with 'text/privacy_policy.txt'|static as policy_file %}
-            {% include policy_file %}
-            {% endwith %}
+            {{ policy_content|linebreaks }}
         </div>
     </div>
 

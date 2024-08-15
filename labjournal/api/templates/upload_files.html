@@ -1,0 +1,19 @@
+{% extends "master.html" %}
+
+{% block title %}
+  About
+{% endblock %}
+
+
+{% block content %}
+<h1>Upload File</h1>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Upload</button>
+    </form>
+
+    {% if file_url %}
+    <p>File uploaded successfully: <a href="{{ file_url }}">{{ file_url }}</a></p>
+    {% endif %}
+{% endblock %}

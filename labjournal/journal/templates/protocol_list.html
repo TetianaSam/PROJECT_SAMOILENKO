@@ -1,0 +1,17 @@
+<!-- file_list.html -->
+<h2>Your protocols</h2>
+
+<form method="GET" action="{% url 'protocol_list' %}">
+    <input type="text" name="q" placeholder="Search by name" value="{{ query }}">
+    <button type="submit">Search</button>
+</form>
+
+<ul>
+    {% for file in files %}
+        <li>
+            <a href="{{ file.file.url }}">{{ file.title }}</a> (Downloaded: {{ file.uploaded_at }})
+        </li>
+    {% empty %}
+        <li>No files found </li>
+    {% endfor %}
+</ul>

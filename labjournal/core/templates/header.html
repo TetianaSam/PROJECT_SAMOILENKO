@@ -4,6 +4,10 @@
         <li class="nav-item"><a class="nav-link link-light" href="{% url 'about' %}">About</a></li>
         <li class="nav-item"><a class="nav-link link-light" href="{% url 'my_lab_journals' %}">My laboratory journal</a></li>
         <li class="nav-item"><a class="nav-link link-light" href="{% url 'my_projects' %}">MY PROJECTS</a></li>
+        <li class="nav-item"><a class="nav-link link-light" href="{% url 'my_protocols' %}">MY PROTOCOLS</a></li>
+        <li class="nav-item"><a class="nav-link link-light" href="{% url 'my_trainings' %}">MY TRAININGS</a></li>
+        <li class="nav-item"><a class="nav-link link-light" href="{% url 'my_chemicals' %}">MY CHEMICALS</a></li>
+        <li class="nav-item"><a class="nav-link link-light" href="{% url 'my_plastic' %}">MY PLASTIC</a></li>
 
         {% if user.is_authenticated %}
             <a class="nav-link link-light" href="{% url 'profile' %}">Profile</a>

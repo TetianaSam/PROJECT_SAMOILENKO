@@ -5,12 +5,14 @@ from django.shortcuts import get_object_or_404, redirect
 from .forms import ProtocolForm
 from django.http import HttpResponse
 from django.utils.html import escape
+from django.contrib.auth.decorators import login_required
 
+@login_required
 def protocol_list(request):
     protocols = Protocol.objects.all()
     return render(request, 'protocol_list.html', {'protocols': protocols})
 
-
+@login_required
 def create_protocol(request):
     if request.method == 'POST':
         form = ProtocolForm(request.POST, request.FILES)
@@ -21,7 +23,7 @@ def create_protocol(request):
         form = ProtocolForm()
 
     return render(request, 'create_protocol.html', {'form': form})
-
+@login_required
 def edit_protocol(request, pk):
     protocol = get_object_or_404(Protocol, pk=pk)
 
@@ -36,11 +38,11 @@ def edit_protocol(request, pk):
 
     return render(request, 'edit_protocol.html', {'form': form, 'protocol': protocol})
 
-
+@login_required
 def confirm_edit(request):
     # Реалізуйте тут вашу логіку підтвердження змін
     return True
-
+@login_required
 def delete_protocol(request, pk):
     protocol = get_object_or_404(Protocol, pk=pk)
 
@@ -50,12 +52,12 @@ def delete_protocol(request, pk):
             return redirect('protocol_list')
     return render(request, 'confirm_delete.html', {'protocol': protocol})
 
-
+@login_required
 def confirm_delete(request):
     # Реалізуйте тут вашу логіку підтвердження видалення
     return True
 
-
+@login_required
 def download_protocol(request, pk):
     protocol = get_object_or_404(Protocol, pk=pk)
 
@@ -63,7 +65,7 @@ def download_protocol(request, pk):
     response['Content-Disposition'] = f'attachment; filename="{protocol.file.name}"'
 
     return response
-
+@login_required
 def view_protocol(request, pk):
     protocol = get_object_or_404(Protocol, pk=pk)
 

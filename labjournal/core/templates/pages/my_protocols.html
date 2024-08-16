@@ -8,10 +8,19 @@
 {% block content %}
 <h1>MY PROTOCOLS</h1>
 <ul class="nav bg-info">
-        <li class="nav-item"><a class="nav-link link-light" href="{% url 'protocol_list' %}">List of protocols</a></li>
-        <li class="nav-item"><a class="nav-link link-light" href="{% url 'upload_protocol' %}">Add new protocol</a></li>
+    <li class="nav-item"><a class="nav-link link-light" href="{% url 'protocol_list' %}">List of protocols</a></li>
+    <li class="nav-item"><a class="nav-link link-light" href="{% url 'create_protocol' %}">Create new protocol</a></li>
+    {% for protocol in protocols %}
+        <li class="nav-item">
+            <a class="nav-link link-light" href="{% url 'edit_protocol' pk=protocol.id %}">Edit protocol {{ protocol.name }}</a>
+        </li>
 
+        <li class="nav-item">
+            <a class="nav-link link-light" href="{% url 'delete_protocol' %}">Delete protocol {{ protocol.name }}</a></li>
 
-    </ul>
+        <li class="nav-item">
+            <a class="nav-link link-light" href="{% url 'download_protocol' %}">Download protocol {{ protocol.name }}</a></li>
+    {% endfor %}
+</ul>
 
 {% endblock %}

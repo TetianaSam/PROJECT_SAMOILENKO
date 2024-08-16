@@ -1,0 +1,7 @@
+<h1>Підтвердження видалення</h1>
+<p>Ви впевнені, що хочете видалити протокол "{{ protocol.name }}"?</p>
+<form method="post">
+    {% csrf_token %}
+    <button type="submit">Так, видалити</button>
+    <a href="{% url 'protocol_list' %}">Скасувати</a>
+</form>

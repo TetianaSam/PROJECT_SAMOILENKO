@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <title>Перегляд Протоколу</title>
+</head>
+<body>
+    <h1>{{ protocol.name }}</h1>
+    <p>Дата створення: {{ protocol.created_at }}</p>
+    <p>Остання дата редагування: {{ protocol.updated_at }}</p>
+    <p>
+        <a href="{% url 'edit_protocol' protocol.pk %}">Редагувати</a> |
+        <a href="{% url 'delete_protocol' protocol.pk %}">Видалити</a> |
+        <a href="{% url 'download_protocol' protocol.pk %}">Завантажити</a>
+    </p>
+    <p>Файл: <a href="{{ protocol.file.url }}" target="_blank">{{ protocol.file.name }}</a></p>
+    <a href="{% url 'protocol_list' %}">Назад до списку</a>
+</body>
+</html>

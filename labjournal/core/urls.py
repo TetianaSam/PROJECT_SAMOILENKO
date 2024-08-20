@@ -7,11 +7,12 @@ urlpatterns = [
     path("privacy-policy/", privacy_policy, name="privacy_policy"),
     path("my-protocols", my_protocols, name="my_protocols"),
     path("my-literature", my_literature, name="my_literature"),
-    path("my-plastic", my_plastic, name="my_plastic"),
-    path("my-chemicals", my_chemicals, name="my_chemicals"),
+    path("reagents_and_consumables", my_reagents_and_consumables, name="reagents_and_consumables"),
     path("my-projects", my_projects, name="my_projects"),
+    path("my-results", my_results, name="my_results"),
     path("my-trainings", my_trainings, name="my_trainings"),
+    path("useful-resources", useful_resources, name="useful_resources"),
     path("about", about_page_view, name="about"),
-    path("mylabjournal", my_lab_journal, name="my_lab_journals"),
+    path("my-lab-journal", my_lab_journal, name="my_lab_journals"),
 
     ]

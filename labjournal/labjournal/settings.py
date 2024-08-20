@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'protocols',
     'core',
     'users',
+    'resources',
     'bootstrap5',
 
 

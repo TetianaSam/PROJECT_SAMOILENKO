@@ -8,12 +8,28 @@
     <h1>{{ protocol.name }}</h1>
     <p>Дата створення: {{ protocol.created_at }}</p>
     <p>Остання дата редагування: {{ protocol.updated_at }}</p>
+
     <p>
         <a href="{% url 'edit_protocol' protocol.pk %}">Редагувати</a> |
         <a href="{% url 'delete_protocol' protocol.pk %}">Видалити</a> |
         <a href="{% url 'download_protocol' protocol.pk %}">Завантажити</a>
     </p>
-    <p>Файл: <a href="{{ protocol.file.url }}" target="_blank">{{ protocol.file.name }}</a></p>
+
+    {% if protocol.file %}
+        <p>Файл: <a href="{{ protocol.file.url }}" target="_blank">{{ protocol.file.name }}</a></p>
+
+        {% if protocol.file.url|slice:"-4:" == ".pdf" %}
+            <iframe src="{{ protocol.file.url }}" style="width:100%; height:80vh;" frameborder="0"></iframe>
+        {% elif protocol.file.url|slice:"-4:" in ".jpeg .jpg .png .tif" %}
+            <img src="{{ protocol.file.url }}" style="max-width:100%; max-height:80vh;" />
+        {% else %}
+            <p>Попередній перегляд для цього типу файлу не підтримується.</p>
+        {% endif %}
+    {% else %}
+        <p>Файл не доступний.</p>
+    {% endif %}
+
     <a href="{% url 'protocol_list' %}">Назад до списку</a>
 </body>
 </html>
+

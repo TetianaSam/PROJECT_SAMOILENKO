@@ -13,3 +13,6 @@ class ProtocolForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.fields['file'].required = False  # Робимо поле файлу необов'язковим
+
+class SearchForm(forms.Form):
+    query = forms.CharField(label='Пошук', max_length=100, required=False)

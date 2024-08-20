@@ -2,33 +2,65 @@
 <html lang="uk">
 <head>
     <meta charset="UTF-8">
-    <title>Список протоколів</title>
+    <title>Список Протоколів</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        table, th, td {
+            border: 1px solid black;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+    </style>
 </head>
 <body>
-    <h1>Список протоколів</h1>
+    <h1>Список Протоколів</h1>
+
+    <form method="get" action="{% url 'protocol_list' %}">
+        {{ search_form.as_p }}
+        <button type="submit">Пошук</button>
+    </form>
+
     <table>
         <thead>
             <tr>
                 <th>Назва</th>
                 <th>Дата створення</th>
-                <th>Остання дата редагування</th>
+                <th>Дата редагування</th>
+                <th>Розмір файлу</th>
+                <th>Тип файлу</th>
                 <th>Дії</th>
             </tr>
         </thead>
         <tbody>
             {% for protocol in protocols %}
-            <tr>
-                <td><a href="{% url 'view_protocol' protocol.pk %}">{{ protocol.name }}</a></td>
-                <td>{{ protocol.created_at }}</td>
-                <td>{{ protocol.updated_at }}</td>
-                <td>
-                    <a href="{% url 'edit_protocol' protocol.pk %}">Редагувати</a>
-                    <a href="{% url 'delete_protocol' protocol.pk %}">Видалити</a>
-                    <a href="{% url 'download_protocol' protocol.pk %}">Завантажити</a>
-                </td>
-            </tr>
+                <tr>
+                    <td>
+                        <a href="{% url 'view_protocol' protocol.pk %}">{{ protocol.name }}</a>
+                    </td>
+                    <td>{{ protocol.created_at }}</td>
+                    <td>{{ protocol.updated_at }}</td>
+                    <td>{{ protocol.file_size|filesizeformat }}</td>
+                    <td>{{ protocol.file_type }}</td>
+                    <td>
+                        <a href="{% url 'view_protocol' protocol.pk %}">Переглянути</a> |
+                        <a href="{% url 'edit_protocol' protocol.pk %}">Редагувати</a> |
+                        <a href="{% url 'delete_protocol' protocol.pk %}" onclick="return confirm('Ви впевнені, що хочете видалити цей протокол?');">Видалити</a> |
+                        <a href="{% url 'download_protocol' protocol.pk %}">Завантажити</a>
+                    </td>
+                </tr>
+            {% empty %}
+                <tr>
+                    <td colspan="6">Немає протоколів</td>
+                </tr>
             {% endfor %}
         </tbody>
     </table>
+
+    <a href="{% url 'create_protocol' %}">Створити новий протокол</a>
 </body>
 </html>

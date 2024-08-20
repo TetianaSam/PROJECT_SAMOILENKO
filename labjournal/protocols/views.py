@@ -2,15 +2,33 @@ from django.shortcuts import render, redirect
 from .models import Protocol
 from django.http import JsonResponse
 from django.shortcuts import get_object_or_404, redirect
-from .forms import ProtocolForm
-from django.http import HttpResponse
+from .forms import ProtocolForm, SearchForm
+from django.http import HttpResponse, HttpResponseNotFound,FileResponse
 from django.utils.html import escape
 from django.contrib.auth.decorators import login_required
+import mimetypes
+import os
 
 @login_required
 def protocol_list(request):
+    search_form = SearchForm(request.GET or None)
     protocols = Protocol.objects.all()
-    return render(request, 'protocol_list.html', {'protocols': protocols})
+
+    if search_form.is_valid():
+        query = search_form.cleaned_data.get('query')
+        if query:
+            protocols = protocols.filter(name__icontains=query)  # Пошук по назві протоколу
+
+    # Додаємо розмір і тип файлу до кожного протоколу
+    for protocol in protocols:
+        if protocol.file:
+            protocol.file_size = protocol.file.size
+            protocol.file_type = mimetypes.guess_type(protocol.file.name)[0] or 'Unknown'
+
+    return render(request, 'protocol_list.html', {
+        'protocols': protocols,
+        'search_form': search_form
+    })
 
 @login_required
 def create_protocol(request):
@@ -70,21 +88,37 @@ def view_protocol(request, pk):
     protocol = get_object_or_404(Protocol, pk=pk)
 
     if not protocol.file:
-        # Handle the case where no file is associated
-        return HttpResponseNotFound("No file found")
+        return HttpResponseNotFound("No file associated with this protocol")
 
-    file_url = protocol.file.url
+    file_path = protocol.file.path
+    file_name = protocol.file.name
+    mime_type, encoding = mimetypes.guess_type(file_path)
 
-    # For different file types, you might need to handle rendering differently
-    if file_url.endswith('.pdf'):
-        return render(request, 'views_files/view_pdf.html', {'file_url': file_url})
-    elif file_url.endswith(('.png', '.jpg', '.jpeg', '.gif')):
-        return render(request, 'views_files/view_image.html', {'file_url': file_url})
-    else:
-        # Default behavior for other types (e.g., text files)
+    if mime_type is None:
+        mime_type = 'application/octet-stream'
+
+    if mime_type.startswith('image/') or mime_type == 'application/pdf':
+        # For images and PDFs, serve the file directly
+        if not os.path.exists(file_path):
+            return HttpResponseNotFound("File not found")
+        response = FileResponse(open(file_path, 'rb'), content_type=mime_type)
+        response['Content-Disposition'] = f'inline; filename="{os.path.basename(file_path)}"'
+        return response
+    elif mime_type.startswith('text/') or mime_type in ('application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'):
+        # For text files and Word documents
         try:
-            with open(protocol.file.path, 'r') as file:
+            with open(file_path, 'r') as file:
                 content = file.read()
-            return render(request, 'views_files/view_text.html', {'content': escape(content), 'file_name': protocol.file.name})
+            return render(request, 'views_files/view_text.html', {
+                'content': escape(content),
+                'file_name': file_name
+            })
         except IOError:
             return HttpResponseNotFound("Error reading the file")
+    else:
+        # Handle other file types as generic downloads
+        if not os.path.exists(file_path):
+            return HttpResponseNotFound("File not found")
+        response = FileResponse(open(file_path, 'rb'), content_type=mime_type)
+        response['Content-Disposition'] = f'attachment; filename="{os.path.basename(file_path)}"'
+        return response

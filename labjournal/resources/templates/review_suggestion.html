@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Review Suggestion</title>
+</head>
+<body>
+    <h1>Review Suggestion</h1>
+    <p><a href="{{ suggestion.link }}" target="_blank">{{ suggestion.link }}</a></p>
+    <p>{{ suggestion.description }}</p>
+    <p>Application Area: {{ suggestion.application_area }}</p>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit">Mark as Reviewed</button>
+    </form>
+    <a href="{% url 'suggestion_list' %}">Back to Suggestion List</a>
+</body>
+</html>

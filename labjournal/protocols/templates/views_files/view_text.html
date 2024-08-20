@@ -2,12 +2,11 @@
 <html lang="uk">
 <head>
     <meta charset="UTF-8">
-    <title>Перегляд Текстового Файлу</title>
+    <title>{{ file_name }}</title>
 </head>
 <body>
-<h1>{{ file_name }}</h1>
-<pre>{{ content }}</pre>
-
-<a href="{% url 'protocol_list' %}">Назад до списку</a>
+    <h1>{{ file_name }}</h1>
+    <pre>{{ content }}</pre>
+    <a href="{% url 'protocol_list' %}">Назад до списку</a>
 </body>
 </html>

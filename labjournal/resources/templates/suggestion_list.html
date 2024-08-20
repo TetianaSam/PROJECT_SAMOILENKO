@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Suggestion List</title>
+</head>
+<body>
+    <h1>Suggestion List</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Number</th>
+                <th>Link</th>
+                <th>Description</th>
+                <th>Application Area</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for suggestion in suggestions %}
+            <tr>
+                <td>{{ forloop.counter }}</td>
+                <td><a href="{{ suggestion.link }}" target="_blank">{{ suggestion.link }}</a></td>
+                <td>{{ suggestion.description }}</td>
+                <td>{{ suggestion.application_area }}</td>
+                <td>
+                    <a href="{% url 'review_suggestion' suggestion.pk %}">Review</a>
+                </td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="5">No suggestions available.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <a href="{% url 'add_suggestion' %}">Submit a New Suggestion</a>
+</body>
+</html>

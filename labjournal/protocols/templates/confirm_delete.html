@@ -1,16 +1,16 @@
 <!DOCTYPE html>
-<html lang="uk">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <title></title>
 </head>
 <body>
-<h1>Підтвердження видалення</h1>
-<p>Ви впевнені, що хочете видалити протокол "{{ protocol.name }}"?</p>
+<h1>Confirm delete</h1>
+<p>Are you sure? that you want to delete this protocol? "{{ protocol.name }}"?</p>
 <form method="post">
     {% csrf_token %}
-    <button type="submit">Так, видалити</button>
-    <a href="{% url 'protocol_list' %}">Скасувати</a>
+    <button type="submit">Yes, delete</button>
+    <a href="{% url 'protocol_list' %}">Decline</a>
 </form>
 </body>
 </html>

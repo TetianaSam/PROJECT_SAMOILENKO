@@ -2,12 +2,12 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Створити Протокол</title>
+    <title>Edit protocol</title>
 </head>
 <body>
-<h1>Редагувати протокол</h1>
+<h1>Edit protocol</h1>
 <form method="post" enctype="multipart/form-data">
     {% csrf_token %}
     {{ form.as_p }}
-    <button type="submit">Зберегти зміни</button>
+    <button type="submit">Save change</button>
 </form>

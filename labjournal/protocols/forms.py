@@ -15,4 +15,4 @@ class ProtocolForm(forms.ModelForm):
         self.fields['file'].required = False  # Робимо поле файлу необов'язковим
 
 class SearchForm(forms.Form):
-    query = forms.CharField(label='Пошук', max_length=100, required=False)
+    query = forms.CharField(label='Search', max_length=100, required=False)

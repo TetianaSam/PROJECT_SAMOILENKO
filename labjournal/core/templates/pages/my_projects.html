@@ -7,4 +7,22 @@
 
 {% block content %}
 <h1>MY PROJECTS</h1>
+
+
+<ul class="nav bg-info">
+    <li class="nav-item"><a class="nav-link link-light" href="{% url 'project_list' %}">List of projects</a></li>
+    <li class="nav-item"><a class="nav-link link-light" href="{% url 'create_project' %}">Create new project</a></li>
+    {% for project in projects %}
+        <li class="nav-item">
+            <a class="nav-link link-light" href="{% url 'edit_project' pk=project.id %}">Edit project {{ project.name }}</a>
+        </li>
+        <li class="nav-item">
+                    <a class="nav-link link-light" href="{% url 'project_detail' pk=project.id %}">View project {{ project.name }}</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link link-light" href="{% url 'delete_project' %}">Delete project {{ project.name }}</a></li>
+
+
+    {% endfor %}
+</ul>
 {% endblock %}

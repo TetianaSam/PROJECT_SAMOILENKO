@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>View Project</title>
+</head>
+<body>
+    <h1>{{ project.name }}</h1>
+    <p><strong>Description:</strong> {{ project.project_description }}</p>
+    <p><strong>Start Date:</strong> {{ project.date_start }}</p>
+    <p><strong>Finish Date:</strong> {{ project.date_finish }}</p>
+    {% if project.file %}
+    <p><strong>File:</strong> <a href="{{ project.file.url }}" target="_blank">View File</a></p>
+    {% endif %}
+    <a href="{% url 'edit_project' pk=project.pk %}">Edit</a> |
+    <a href="{% url 'delete_project' pk=project.pk %}">Delete</a> |
+    <a href="{% url 'project_list' %}">Back to Project List</a>
+</body>
+</html>

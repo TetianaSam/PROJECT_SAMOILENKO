@@ -44,8 +44,6 @@ INSTALLED_APPS = [
     'bootstrap5',
     'projects',
 
-
-
 ]
 
 MIDDLEWARE = [

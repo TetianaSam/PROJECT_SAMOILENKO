@@ -4,7 +4,10 @@ body {
 }
 
 .nav-item {
-    background-color: #4b0082; /* Синій фон для навбару */
+    background-color:#6f42c1; /* Синій фон для навбару */
+}
+.nav-link link-light {
+    background-color:#6f42c1;
 }
 
 .sticky_footer {
@@ -19,3 +22,4 @@ a {
 a:hover {
     color: #90ee90; /* Колір посилань при наведенні */
 }
+. nav-link link-light

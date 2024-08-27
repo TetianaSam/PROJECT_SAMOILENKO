@@ -9,10 +9,13 @@ body {
 .nav-link link-light {
     background-color:#6f42c1;
 }
-
+.nav bg-info {
+ background-color:#6f42c1;
+}
 .sticky_footer {
     background-color: #4b0082; /* Темний фон для футера */
     color: #ffffff; /* Білий колір тексту в футері */
+    text-decoration: underline;
 }
 
 a {

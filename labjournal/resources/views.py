@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Resource, Suggestion
-from .forms import ResourceForm, SuggestionForm
+from .forms import ResourceForm, SuggestionForm, SearchForm
 from django.contrib.auth.decorators import login_required
 
 

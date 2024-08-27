@@ -1,7 +1,13 @@
+
+{% extends "master.html" %}
+
+{% block content %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+
     <title>Resource List</title>
 </head>
 <body>
@@ -41,5 +47,8 @@
         </tbody>
     </table>
     <a href="{% url 'add_resource' %}">Add New Resource</a>
+    <a href="{% url 'useful_resources' %}">Back</a>
+
 </body>
 </html>
+{% endblock %}

@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Confirm Remove Access</title>
+</head>
+<body>
+    <h1>Confirm Remove Access</h1>
+    <p>Are you sure you want to remove access for {{ access.user.username }}?</p>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit">Yes, Remove Access</button>
+    </form>
+    <a href="{% url 'manage_project_access' project.id %}">Cancel</a>
+</body>
+</html>

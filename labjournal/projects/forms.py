@@ -1,5 +1,6 @@
 from django import forms
-from .models import Project
+from .models import Project, ProjectAccess
+from django.contrib.auth.models import User
 
 class ProjectForm(forms.ModelForm):
     class Meta:
@@ -12,6 +13,18 @@ class ProjectForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.fields['file'].required = False  # Робимо поле файлу необов'язковим
+
+class ProjectAccessForm(forms.ModelForm):
+    class Meta:
+        model = ProjectAccess
+        fields = ['user', 'access_level']
+
+    def __init__(self, *args, **kwargs):
+        project = kwargs.pop('project', None)
+        super().__init__(*args, **kwargs)
+        if project:
+            # Фільтрувати користувачів, щоб показати тільки тих, хто ще не має доступу
+            self.fields['user'].queryset = User.objects.exclude(projectaccess__project=project)
 
 
 class SearchForm(forms.Form):

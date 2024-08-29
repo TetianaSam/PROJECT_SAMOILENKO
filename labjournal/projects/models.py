@@ -13,7 +13,7 @@ class UserFile(models.Model):
 class Project(models.Model):
     name = models.CharField(max_length=100)
     project_description = models.TextField(default="N/A")
-    owner = models.ForeignKey(User, on_delete=models.CASCADE)  # Власник проекту
+    owner = models.ForeignKey(User, on_delete=models.CASCADE, related_name='owned_projects')  # Власник проекту
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     date_start = models.DateField()
@@ -22,3 +22,21 @@ class Project(models.Model):
 
     def __str__(self):
         return self.name
+
+class ProjectAccess(models.Model):
+    READ = 'read'
+    WRITE = 'write'
+    ACCESS_CHOICES = [
+        (READ, 'Read'),
+        (WRITE, 'Write'),
+    ]
+
+    project = models.ForeignKey(Project, on_delete=models.CASCADE, related_name='access_permissions')
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    access_level = models.CharField(max_length=10, choices=ACCESS_CHOICES, default=READ)
+
+    class Meta:
+        unique_together = ('project', 'user')
+
+    def __str__(self):
+        return f'{self.user.username} - {self.project.name} ({self.get_access_level_display()})'

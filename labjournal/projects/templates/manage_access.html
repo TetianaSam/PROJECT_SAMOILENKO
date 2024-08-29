@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Manage Project Access</title>
+</head>
+<body>
+    <h1>Manage Access for {{ project.name }}</h1>
+
+    <h2>Grant Access</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Add Access</button>
+    </form>
+
+    <h2>Existing Access</h2>
+    <ul>
+        {% for access in existing_access %}
+            <li>{{ access.user.username }} - {{ access.get_access_level_display }}
+                <form method="post" action="{% url 'remove_project_access' project.id access.user.id %}" style="display:inline;">
+                    {% csrf_token %}
+                    <button type="submit">Remove Access</button>
+                </form>
+            </li>
+        {% endfor %}
+    </ul>
+
+    <a href="{% url 'project_list' %}">Back to Project List</a>
+</body>
+</html>

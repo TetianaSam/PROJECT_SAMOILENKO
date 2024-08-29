@@ -1,29 +1,29 @@
 {% load static %}
+{% load bootstrap5 %}
 
 <!DOCTYPE html>
 <html>
 <head>
   <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale">
     <title>{% block title %}{% endblock %}</title>
-
-
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
 
-  {% load bootstrap5 %}
+  {% block extra_css %}{% endblock %}
+
   {% bootstrap_css %}
   {% bootstrap_javascript %}
 </head>
 <body>
-<div class="container-fluid">
+  <div class="container-fluid">
+    {% include 'header.html' %}
 
-{% include 'header.html' %}
+    {% block content %}
 
-{% block content %}
-{% endblock %}
+    {% endblock %}
 
-   <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
-{% include 'footer.html' %}
-</div>
+
+    {% include 'footer.html' %}
+  </div>
 </body>
 </html>

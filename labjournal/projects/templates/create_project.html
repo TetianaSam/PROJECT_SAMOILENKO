@@ -10,7 +10,10 @@
         {% csrf_token %}
         {{ form.as_p }}
         <button type="submit">Save</button>
+
     </form>
-    <a href="{% url 'project_list' %}">Back to Project List</a>
+    <button  type="button" onclick="window.location.href ='{% url 'project_list' %}'">Back to Project List </button>
+
+
 </body>
 </html>

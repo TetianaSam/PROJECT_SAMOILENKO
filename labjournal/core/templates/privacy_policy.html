@@ -1,20 +1,20 @@
-{% load static %}
 {% extends 'master.html' %}
+{% load static %}
+
+{% block content %}
 <!DOCTYPE html>
 <html lang="cs">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Zásady ochrany osobních údajů</title>
     <link rel="stylesheet" href="{% static 'css/privacy_policy.css' %}">
 
-    {% load bootstrap5 %}
-    {% bootstrap_css %}
-    {% bootstrap_javascript %}
+
 </head>
 
 <body>
-    <div class="container">
+    <div class="container-fluid">
         <h1>Zásady ochrany osobních údajů</h1>
 
         <!-- Display the content from the text file -->
@@ -23,8 +23,7 @@
         </div>
     </div>
 
-    <footer>
-        <p>&copy; 2024 Example Corp. Všechna práva vyhrazena.</p>
-    </footer>
+
 </body>
 </html>
+{% endblock %}

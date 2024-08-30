@@ -145,3 +145,4 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # Session settings
 SESSION_ENGINE = 'django.contrib.sessions.backends.db'  # Можливі варіанти: db, cache, file тощо
 SESSION_COOKIE_NAME = 'sessionid'
+ALLOWED_HOSTS = ['localhost', '127.0.0.1']

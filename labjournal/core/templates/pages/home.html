@@ -1,15 +1,17 @@
 {% extends "master.html" %}
 {% load static %}
 
-
 {% block content %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title></title>
+  <title>Home page images</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  </head>
+  <!-- Bootstrap CSS -->
+  <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+  <link href="{% static 'css/style.css' %}" rel="stylesheet">
+</head>
 <body>
 
 <!-- Carousel -->
@@ -25,30 +27,40 @@
   <!-- The slideshow/carousel -->
   <div class="carousel-inner">
     <div class="carousel-item active">
-      <img src="{% static 'images.home_page2'%}" alt="Cell culture flask" class="d-block" style="width:100%">
+      <img src="{% static 'images/home_page2.jpg' %}" alt="Cell culture flask" class="d-block w-100">
+      <div class="carousel-caption d-none d-md-block">
+        <h5>Cell culture flask</h5>
+      </div>
     </div>
     <div class="carousel-item">
-       <img src="{% static 'images.home_page1'%}" alt="Cell biologist" class="d-block" style="width:100%">
+      <img src="{% static 'images/home_page1.jpg' %}" alt="Cell biologist" class="d-block w-100">
+      <div class="carousel-caption d-none d-md-block">
+        <h5>Cell biologist</h5>
+      </div>
     </div>
     <div class="carousel-item">
-       <img src="{% static 'images.home_page3'%}" alt="Cell culture dish" class="d-block" style="width:100%">
+      <img src="{% static 'images/home_page3.jpg' %}" alt="Cell culture dish" class="d-block w-100">
+      <div class="carousel-caption d-none d-md-block">
+        <h5>Cell culture dish</h5>
+      </div>
     </div>
   </div>
 
   <!-- Left and right controls/icons -->
   <button class="carousel-control-prev" type="button" data-bs-target="#demo" data-bs-slide="prev">
-    <span class="carousel-control-prev-icon"></span>
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
   </button>
   <button class="carousel-control-next" type="button" data-bs-target="#demo" data-bs-slide="next">
-    <span class="carousel-control-next-icon"></span>
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
   </button>
 </div>
 
-
+<!-- Bootstrap JS and dependencies -->
+<script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
 
 </body>
 </html>
-
-
 
 {% endblock %}

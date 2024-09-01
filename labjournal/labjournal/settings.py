@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'bootstrap5',
     'projects',
     'crispy_forms',
+    'reagents',
 
 ]
 
@@ -87,8 +88,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
-    }
-}
+ }}
 
 
 # Password validation
@@ -146,3 +146,4 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 SESSION_ENGINE = 'django.contrib.sessions.backends.db'  # Можливі варіанти: db, cache, file тощо
 SESSION_COOKIE_NAME = 'sessionid'
 ALLOWED_HOSTS = ['localhost', '127.0.0.1']
+

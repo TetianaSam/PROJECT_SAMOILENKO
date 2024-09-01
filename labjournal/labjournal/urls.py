@@ -27,6 +27,8 @@ urlpatterns = [
         path('protocols', include("protocols.urls")),
         path('projects', include("projects.urls")),
         path('resources', include("resources.urls")),
+        path('reagents', include("reagents.urls")),
+
         path('admin/', admin.site.urls),
 ]
 

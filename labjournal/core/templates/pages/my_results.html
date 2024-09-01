@@ -1,17 +1,17 @@
 {% extends "master.html" %}
+{% load static %}
 
 {% block content %}
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>My results</title>
-</head>
+  {% block extra_css %}
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+  {% endblock %}
+
 <body>
 
 
 </body>
-</html>
+
 
 {% endblock %}

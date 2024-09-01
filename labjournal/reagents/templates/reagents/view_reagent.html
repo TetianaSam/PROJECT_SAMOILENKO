@@ -1,0 +1,15 @@
+{% extends 'master.html' %}
+
+
+{% block content %}
+  <h1>View Reagent</h1>
+
+  <p><strong>Name:</strong> {{ reagent.name }}</p>
+  <p><strong>Description:</strong> {{ reagent.description }}</p>
+  <p><strong>Owner:</strong> {{ reagent.owner.username }}</p>
+  <p><strong>Created At:</strong> {{ reagent.created_at }}</p>
+
+  <a href="{% url 'edit_reagent' reagent.pk %}">Edit</a>
+  <a href="{% url 'delete_reagent' reagent.pk %}" onclick="return confirm('Are you sure?');">Delete</a>
+  <a href="{% url 'reagents_list' %}">Back to List</a>
+{% endblock %}

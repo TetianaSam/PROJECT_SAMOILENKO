@@ -1,12 +1,16 @@
+{% load static %}
 <header>
-    <ul class="nav bg-dark">
+    <ul class="nav justify-content-center bg-dark">
+       <div class="container-fluid">
+    <a class="navbar-brand" href="#">
+      <img src="{% static 'images/logotyp.jpg' %}" alt="Avatar Logo" style="width:40px;" class="rounded-pill"</a>
+        </div>
         <li class="nav-item"><a class="nav-link link-light" href="{% url 'home' %}">Home</a></li>
         <li class="nav-item"><a class="nav-link link-light" href="{% url 'about' %}">About</a></li>
         <li class="nav-item"><a class="nav-link link-light" href="{% url 'my_lab_journals' %}">My laboratory journal</a></li>
         <li class="nav-item"><a class="nav-link link-light" href="{% url 'my_projects' %}">MY PROJECTS</a></li>
         <li class="nav-item"><a class="nav-link link-light" href="{% url 'my_protocols' %}">MY PROTOCOLS</a></li>
         <li class="nav-item"><a class="nav-link link-light" href="{% url 'my_results' %}">MY RESULTS</a></li>
-        <li class="nav-item"><a class="nav-link link-light" href="{% url 'my_trainings' %}">MY TRAININGS</a></li>
         <li class="nav-item"><a class="nav-link link-light" href="{% url 'useful_resources' %}">USEFUL RESOURCES</a></li>
         <li class="nav-item"><a class="nav-link link-light" href="{% url 'reagents_and_consumables' %}">MY REAGENTS AND CONSUMABLES</a></li>
 

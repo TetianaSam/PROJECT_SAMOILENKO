@@ -1,0 +1,36 @@
+{% extends 'master.html' %}
+
+
+{% block content %}
+<h1>Consumables List</h1>
+
+  <form method="get" action="{% url 'consumables_list' %}">
+    {{ search_form.as_p }}
+    <button type="submit">Search</button>
+  </form>
+
+  <a href="{% url 'create_consumable' %}">Add New Consumable</a>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for consumable in consumables %}
+        <tr>
+          <td>{{ consumable.name }}</td>
+          <td>{{ consumable.description }}</td>
+          <td>
+            <a href="{% url 'view_consumable' consumable.pk %}">View</a>
+            <a href="{% url 'edit_consumable' consumable.pk %}">Edit</a>
+            <a href="{% url 'delete_consumable' consumable.pk %}" onclick="return confirm('Are you sure?');">Delete</a>
+          </td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}

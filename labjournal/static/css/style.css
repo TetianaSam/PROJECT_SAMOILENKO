@@ -5,6 +5,20 @@ body {
 
 }
 
+header{
+    font-family: Arial, sans-serif;
+	color:#800000;
+	background-color: $red-700;
+
+} #nefunguje
+
+.content-section {
+    color:
+    background-color: $red-700;
+}
+
+
+
 .nav bg-info {
     background-color:#CD853F;
 }
@@ -14,12 +28,17 @@ body {
 	color: #800000;
 	background-color:#CD853F;
 }
-.carousel {
-  height: 25vh; /* 25% висоти вікна браузера */
+/* In style.css or within a <style> block */
+.carousel-quarter-height {
+    height: 25vh !important;/* Set carousel height to 25% of the viewport height */
 }
 
-.carousel-item img {
-  object-fit: cover; /* Зберігає співвідношення сторін, обрізає зображення, щоб воно заповнювало весь контейнер */
-  height: 100%;
-  width: 100%;
+.carousel-quarter-height .carousel-inner {
+    height: 100% !important; /* Make sure the carousel inner div fills the defined height */
+}
+
+.carousel-quarter-height .carousel-item img {
+    height: 25% !important;
+    width: 100% !important;
+    object-fit: cover !important;  /* Make images cover the entire carousel area */
 }

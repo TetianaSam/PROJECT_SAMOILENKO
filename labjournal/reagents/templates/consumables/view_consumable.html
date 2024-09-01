@@ -1,0 +1,15 @@
+{% extends 'master.html' %}
+
+
+{% block content %}
+<h1>View Consumable</h1>
+
+  <p><strong>Name:</strong> {{ consumable.name }}</p>
+  <p><strong>Description:</strong> {{ consumable.description }}</p>
+  <p><strong>Owner:</strong> {{ consumable.owner.username }}</p>
+  <p><strong>Created At:</strong> {{ consumable.created_at }}</p>
+
+  <a href="{% url 'edit_consumable' consumable.pk %}">Edit</a>
+  <a href="{% url 'delete_consumable' consumable.pk %}" onclick="return confirm('Are you sure?');">Delete</a>
+  <a href="{% url 'consumables_list' %}">Back to List</a>
+{% endblock %}

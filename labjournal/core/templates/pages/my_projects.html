@@ -1,9 +1,12 @@
 {% extends "master.html" %}
-
+{% load static %}
 
 {% block content %}
 <h1>MY PROJECTS</h1>
-
+{% block extra_css %}
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+  {% endblock %}
 
 <ul class="nav bg-info">
     <li class="nav-item"><a class="nav-link link-light" href="{% url 'project_list' %}">List of projects</a></li>

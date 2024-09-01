@@ -1,11 +1,15 @@
 {% extends "master.html" %}
-
-{% block title %}
-  Home
-{% endblock %}
+{% load static %}
 
 
 {% block content %}
+
+{% block extra_css %}
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+  {% endblock %}
+
+
 <h1>USEFUL RESOURCES</h1>
 <ul class="nav bg-info">
     <li class="nav-item"><a class="nav-link link-light" href="{% url 'resource_list' %}"> List of resources </a></li>

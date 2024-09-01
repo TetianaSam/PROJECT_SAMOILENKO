@@ -1,10 +1,54 @@
 {% extends "master.html" %}
-
-{% block title %}
-  Home
-{% endblock %}
-
+{% load static %}
 
 {% block content %}
+
+{% block extra_css %}
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+  {% endblock %}
+
 <h1>MY REAGENTS AND CONSUMABLES</h1>
+
+<ul class="nav bg-info">
+    <li class="nav-item"><a class="nav-link link-light" href="{% url 'reagents_list' %}">List of reagents</a></li>
+    <li class="nav-item"><a class="nav-link link-light" href="{% url 'consumables_list' %}">List of consumables</a></li>
+
+    {% for reagent in reagents %}
+        <li class="nav-item">
+            <a class="nav-link link-light" href="{% url 'create_reagent'  %}">Add reagent {{ reagent.name }}</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link link-light" href="{% url 'edit_reagent' pk=reagent.id %}">Edit reagent {{ reagent.name }}</a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link link-light" href="{% url 'delete_reagent' pk=reagent.id %}">Delete reagent {{ reagent.name }}</a></li>
+
+        <li class="nav-item">
+            <a class="nav-link link-light" href="{% url 'view_reagent' pk=reagent.id%}"> View reagent {{ reagent.name }}</a></li>
+
+        <li class="nav-item">
+            <a class="nav-link link-light" href="{% url 'manage_reagent_access' pk=reagent.id%}"> Manage access {{ reagent.name }}</a></li>
+    {% endfor %}
+
+     {% for consumable in consumables %}
+        <li class="nav-item">
+            <a class="nav-link link-light" href="{% url 'create_consumable' %}">Add consumable{{ consumable.name }}</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link link-light" href="{% url 'edit_consumable' pk=consumable.id %}">Edit reagent {{ reagent.name }}</a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link link-light" href="{% url 'delete_consumable' pk=consumable.id %}">Delete reagent {{ reagent.name }}</a></li>
+
+        <li class="nav-item">
+            <a class="nav-link link-light" href="{% url 'view_consumable' pk=consumable.id %}"> View reagent {{ reagent.name }}</a></li>
+
+        <li class="nav-item">
+            <a class="nav-link link-light" href="{% url 'manage_consumable_access' pk=consumable.id %}"> Manage access {{ reagent.name }}</a></li>
+    {% endfor %}
+
+</ul>
 {% endblock %}

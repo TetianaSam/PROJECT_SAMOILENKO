@@ -1,0 +1,35 @@
+{% extends 'master.html' %}
+
+{% block extra_css %}{% endblock %}
+
+{% block content %}
+<h1>Reagents List</h1>
+
+  <form method="get" action="{% url 'reagents_list' %}">
+    {{ search_form.as_p }}
+    <button type="submit">Search</button>
+  </form>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for reagent in reagents %}
+          <td>{{ reagent.name }}</td>
+          <td>{{ reagent.description }}</td>
+          <td>
+            <a href="{% url 'view_reagent' reagent.pk %}">View</a>
+            <a href="{% url 'edit_reagent' reagent.pk %}">Edit</a>
+            <a href="{% url 'delete_reagent' reagent.pk %}" onclick="return confirm('Are you sure?');">Delete</a>
+          </td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  <a href="{% url 'create_reagent' %}">Add New Reagent</a>
+{% endblock %}

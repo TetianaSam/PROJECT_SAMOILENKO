@@ -1,44 +1,134 @@
-body { 
+/* BASIC*/
+body {
 	font-family: Arial, sans-serif;
-	color:#800000;
-	background-color: #CD853F;
-
+	color:	#3bbfbf;
+	background-color:#132a36;
+	padding: 0;
+	margins: 0;
 }
-
-header{
-    font-family: Arial, sans-serif;
-	color:#800000;
-	background-color: $red-700;
-
-} #nefunguje
-
-.content-section {
-    color:
-    background-color: $red-700;
-}
-
-
-
-.nav bg-info {
-    background-color:#CD853F;
-}
-
 .container_fluid {
 	font-family: Arial, sans-serif;
-	color: #800000;
-	background-color:#CD853F;
-}
-/* In style.css or within a <style> block */
-.carousel-quarter-height {
-    height: 25vh !important;/* Set carousel height to 25% of the viewport height */
+	color: #3bbfbf;
+	background-color:#132a36;
+	width: 100%;
+    padding-right:0;
+    padding-left:0;
+    margin-right:0;
+    margin-left: 0;
+    }
+
+/*HEADER Set carousel height to 25% of the viewport height */
+.nav {
+    color: #3bbfbf;
+    background-color:#0a0e11;
+    width:100%;
 }
 
-.carousel-quarter-height .carousel-inner {
-    height: 100% !important; /* Make sure the carousel inner div fills the defined height */
+.nav-item {
+    color: #3bbfbf;
+    background-color:#0a0e11;
 }
 
-.carousel-quarter-height .carousel-item img {
-    height: 25% !important;
-    width: 100% !important;
-    object-fit: cover !important;  /* Make images cover the entire carousel area */
+.nav-link {
+    color:#3bbfbf;
+    background-color:#0a0e11;
 }
+
+.logo {
+    width: 100%; /* Зробити ширину 100% від батьківського контейнера */
+    height: 25vh; /* Зробити висоту 25% від висоти вікна браузера */
+    object-fit: contain; /* Зберегти пропорції логотипу */
+}
+
+
+.content-section {
+    color:#3bbfbf;
+    background-color:#132a36;
+}
+
+.bt_style {
+    display: inline-block;
+    padding: 10px 15px;
+    font-size: 14px;
+    color:#3bbfbf;
+    background-color:#0a0e11;
+    border: none;
+    border-radius: 10px;
+    text-decoration: none;
+    cursor: pointer;
+    text-align: center;
+}
+
+.bt_style:hover {
+    background-color: #3bbfbf;
+}
+
+/* Загальні стилі для таблиці */
+table {
+    width: 100%;
+    border-collapse: collapse; /* Забирає проміжки між рамками */
+    margin-bottom: 40px;
+    font-size: 16px;
+    color: #0e3344;
+    background-color: #39828b;
+}
+
+/* Стилі для заголовка таблиці */
+.table th {
+    background-color: #4CAF50; /* Зелений фон */
+    color: white; /* Білий текст */
+    text-align: left; /* Вирівнювання тексту по лівому краю */
+    padding: 10px;
+    border-bottom: 2px solid #ddd;
+}
+
+/* Стилі для рядків таблиці */
+.table td {
+    padding: 10px;
+    border-bottom: 1px solid #ddd; /* Роздільник між рядками */
+}
+
+/* Стилі для рядків, що чергуються */
+.table tr:nth-child(even) {
+    background-color: #f2f2f2; /* Світлий сірий фон */
+}
+
+/* Стиль для рядків при наведенні курсора */
+.table tr:hover {
+    background-color: #e9e9e9; /* Трохи темніший сірий фон */
+}
+
+/* Стиль для клікабельних посилань у таблиці */
+.table a {
+    color: #007bff; /* Синій текст для посилань */
+    text-decoration: none;
+}
+
+.table a:hover {
+    text-decoration: underline; /* Підкреслення при наведенні */
+}
+
+/* Адаптивність таблиці */
+.table-responsive {
+    overflow-x: auto; /* Додає горизонтальну прокрутку для мобільних пристроїв */
+}
+.sticky_footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color:#132a36; /* Background color of the footer */
+    color: #3bbfbf; /* Text color */
+    text-align: center; /* Center the text */
+    padding: 1rem 0; /* Padding for spacing */
+    border-top: 1px solid #3bbfbf; /* Optional border for visual separation */
+}
+.carousel-height {
+    height: 50vh; /* 50% of the viewport height */
+  }
+
+  /* Ensure images fit the carousel height */
+  .carousel-item img {
+    height: 100%;  /* Make image height take full height of carousel */
+    object-fit: cover; /* Ensure the image covers the entire carousel area */
+  }

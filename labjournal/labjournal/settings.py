@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'projects',
     'crispy_forms',
     'reagents',
+    'notes',
 
 ]
 

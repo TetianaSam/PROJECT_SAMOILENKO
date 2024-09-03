@@ -5,7 +5,7 @@ from django.contrib.auth.models import User
 class ReagentsForm(forms.ModelForm):
     class Meta:
         model = Reagents
-        fields = ['reagent_position', 'name', 'units', 'storage_temp', 'cat_number', 'lot', 'producer','reagent_descr',
+        fields = ['name', 'units', 'amount','storage_temperature', 'cat_number', 'lot', 'producer','reagent_description',
                   'delivery_date', 'expiration_date', 'file']  # Поле owner не включається у форму
         widgets = {
             'file': forms.ClearableFileInput(attrs={'multiple': False}),

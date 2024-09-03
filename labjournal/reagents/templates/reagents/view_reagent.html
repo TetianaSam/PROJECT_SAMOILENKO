@@ -1,15 +1,56 @@
 {% extends 'master.html' %}
+{% load static %}
 
+{% block title %}View reagent{% endblock %}
 
 {% block content %}
-  <h1>View Reagent</h1>
 
-  <p><strong>Name:</strong> {{ reagent.name }}</p>
-  <p><strong>Description:</strong> {{ reagent.description }}</p>
-  <p><strong>Owner:</strong> {{ reagent.owner.username }}</p>
-  <p><strong>Created At:</strong> {{ reagent.created_at }}</p>
+{% block extra_css %}
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+{% endblock %}
 
-  <a href="{% url 'edit_reagent' reagent.pk %}">Edit</a>
-  <a href="{% url 'delete_reagent' reagent.pk %}" onclick="return confirm('Are you sure?');">Delete</a>
-  <a href="{% url 'reagents_list' %}">Back to List</a>
+<h1>View Reagent</h1>
+
+<table>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Units</th>
+            <th>Amount</th>
+            <th>Storage temperature</th>
+            <th>Catalog number</th>
+            <th>Lot number</th>
+            <th>Producer</th>
+            <th>Delivery date</th>
+            <th>Expiration date</th>
+            <th>File</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+
+
+            <tr>
+                <td>{{ reagent.name }}</td>
+                <td>{{ reagent.units }}</td>
+                <td>{{ reagent.amount }}</td>
+                <td>{{ reagent.storage_temperature }}</td>
+                <td>{{ reagent.cat_number }}</td>
+                <td>{{ reagent.lot }}</td>
+                <td>{{ reagent.producer }}</td>
+                <td>{{ reagent.delivery_date }}</td>
+                <td>{{ reagent.expiration_date }}</td>
+                <td>{{ reagent.file }}</td>
+                <td>
+
+                    <button class="bt_style" onclick="window.location.href='{% url 'edit_reagent' reagent.pk %}'">Edit</button>
+                    <button class="bt_style" onclick="if (confirm('Are you sure?')) { window.location.href='{% url 'delete_reagent' reagent.pk %}'; }">Delete</button>
+                </td>
+            </tr>
+
+
+    </tbody>
+</table>
+
 {% endblock %}

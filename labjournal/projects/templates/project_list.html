@@ -1,27 +1,16 @@
+{% extends 'master.html' %}
 {% load static %}
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>{% block title %}{% endblock %}</title>
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
-    {% load bootstrap5 %}
-    {% bootstrap_css %}
-    {% bootstrap_javascript %}
-</head>
-<body>
-
-
-<div class="container-fluid">
-
-{% include 'header.html' %}
-
-        <h1>Project List</h1>
-        <form method="get" action="{% url 'project_list' %}">
-            {{ search_form.as_p }}
-            <button type="submit">Search</button>
-        </form>
+{% block content %}
+{% block extra_css %}
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+{% endblock %}
+    <h2>Project List</h2>
+    <form method="get" action="{% url 'project_list' %}">
+        {{ search_form.as_p }}
+        <button class="bt_style" type="submit">Search</button>
+    </form>
         <table>
             <thead>
                 <tr>
@@ -40,8 +29,9 @@
                     <td>{{ project.date_start }}</td>
                     <td>{{ project.date_finish }}</td>
                     <td>
-                        <button type="button" onclick="window.location.href='{% url 'edit_project' pk=project.pk %}'">Edit</a></button>
-                        <button type="button" onclick="window.location.href='{% url 'delete_project' pk=project.pk %}'">Delete</a></button>
+                        <button class="bt_style" type="button" onclick="window.location.href='{% url 'edit_project' pk=project.pk %}'">Edit</a></button>
+                        <button class="bt_style" type="button" onclick="window.location.href='{% url 'delete_project' pk=project.pk %}'">Delete</a></button>
+                        <button class="bt_style" type="button" onclick="window.location.href='{% url 'project_detail' pk=project.pk %}'">Preview</a></button>
                     </td>
                 </tr>
                 {% empty %}
@@ -51,15 +41,10 @@
                 {% endfor %}
             </tbody>
         </table>
-        <button type="button" onclick="window.location.href='{% url 'create_project' %}'">Create New Project</button>
-        <button type="button" onclick="window.location.href='{% url 'my_projects' %}'">Back</button>
+        <button class="bt_style" type="button" onclick="window.location.href='{% url 'create_project' %}'">Create New Project</button>
+        <button class="bt_style" type="button" onclick="window.location.href='{% url 'my_projects' %}'">Back</button>
 
     </body>
     </html>
 
-
-
-{% include 'footer.html' %}
-</div>
-</body>
-</html>
+{% endblock %}

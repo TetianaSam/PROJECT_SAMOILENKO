@@ -1,0 +1,19 @@
+{% extends 'master.html' %}
+{% load static %}
+
+{% block title %}delete protocol{% endblock %}
+
+{% block content %}
+{% block extra_css %}
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+  {% endblock %}
+
+<h1>Confirm delete</h1>
+<p>Are you sure, that you want to delete this protocol? "{{ protocol.name}}"?</p>
+    <form method="post">
+        {% csrf_token %}
+        <button class="bt_style" type="submit">Yes, delete</button>
+    </form>
+<button class="bt_style" onclick="window.location.href='{% url 'protocol_list' %}'">Decline</button>
+{% endblock %}

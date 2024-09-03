@@ -11,16 +11,16 @@
 
 
 <h1>USEFUL RESOURCES</h1>
-<ul class="nav bg-info">
-    <li class="nav-item"><a class="nav-link link-light" href="{% url 'resource_list' %}"> List of resources </a></li>
-    <li class="nav-item"><a class="nav-link link-light" href="{% url 'add_resource' %}">Add new resource</a></li>
+<ul class="nav">
+    <li class="nav-item"><a class="nav-link" href="{% url 'resource_list' %}"> List of resources </a></li>
+    <li class="nav-item"><a class="nav-link" href="{% url 'add_resource' %}">Add new resource</a></li>
     {% for protocol in protocols %}
         <li class="nav-item">
-            <a class="nav-link link-light" href="{% url 'edit_resource' pk=protocol.id %}">Edit resource {{ resource.name }}</a>
+            <a class="nav-link " href="{% url 'edit_resource' pk=protocol.id %}">Edit resource {{ resource.name }}</a>
         </li>
 
         <li class="nav-item">
-            <a class="nav-link link-light" href="{% url 'delete_resource' %}">Delete resource {{ resource.name }}</a></li>
+            <a class="nav-link" href="{% url 'delete_resource' %}">Delete resource {{ resource.name }}</a></li>
 
         {% endfor %}
 </ul>

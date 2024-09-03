@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseForbidden, HttpResponseNotFound
 from .models import Project, ProjectAccess
+from protocols.models import Protocol
 from .forms import ProjectForm, SearchForm, ProjectAccessForm
 from django.contrib import messages
 
@@ -95,8 +96,9 @@ def view_project(request, pk):
                                                                                             ProjectAccess.WRITE]).exists():
         return HttpResponseForbidden("You are not allowed to view this project.")
 
-    return render(request, 'view_project.html', {'project': project})
-
+    protocols = project.protocols.all()  # Використовуємо related_name='protocols' з ManyToManyField
+#notes = note.notes.all()TO DO?????
+    return render(request, 'view_project.html', {'project': project, 'protocols': protocols})
 
 @login_required
 def edit_project(request, pk):
@@ -125,5 +127,5 @@ def delete_project(request, pk):
     if request.method == 'POST':
         project.delete()
         return redirect('project_list')
-    return render(request, 'confirm_delete.html', {'project': project})
+    return render(request, 'confirm_delete_project.html', {'project': project})
 

@@ -1,31 +1,21 @@
 {% extends 'master.html' %}
 {% load static %}
 
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>{% block title %}{% endblock %}</title>
-
-</head>
-<body>
-
+{% block content %}
 {% block extra_css %}
-    <link rel="stylesheet" href="{% static 'css/style_tables.css' %}">
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
 {% endblock %}
 
-<div class="container-fluid">
 
-{% include 'header.html' %}
 
-{% block content %}
     <h1>List of Protocols</h1>
 
         <form method="get" action="{% url 'protocol_list' %}">
             {{ search_form.as_p }}
-            <button type="submit" class="btn">Search</button>
+
         </form>
+        <button class="bt_style" type="submit" >Search</button>
 
         <table>
             <thead>
@@ -49,10 +39,10 @@
                         <td data-label="File Size">{{ protocol.file_size|filesizeformat }}</td>
                         <td data-label="Type of Files">{{ protocol.file_type }}</td>
                         <td data-label=" " class="actions">
-                            <a href="{% url 'view_protocol' protocol.pk %}">Preview</a> |
-                            <a href="{% url 'edit_protocol' protocol.pk %}">Edit</a> |
-                            <a href="{% url 'delete_protocol' protocol.pk %}" onclick="return confirm('Are you sure you want to delete this protocol?');">Delete</a> |
-                            <a href="{% url 'download_protocol' protocol.pk %}">Download</a>
+                            <button class="bt_style" onclick="window.location.href='{% url 'view_protocol' protocol.pk %}'">Preview</button>
+                            <button class="bt_style" onclick="window.location.href='{% url 'edit_protocol' protocol.pk %}'">Edit</button>
+                            <button class="bt_style" onclick="window.location.href='{% url 'delete_protocol' protocol.pk %}'" onclick="return confirm('Are you sure you want to delete this protocol?');">Delete</button>
+                            <button class="bt_style" onclick="window.location.href='{% url 'download_protocol' protocol.pk %}'">Download</button>
                         </td>
                     </tr>
                 {% empty %}
@@ -63,10 +53,7 @@
             </tbody>
         </table>
 
-        <a href="{% url 'create_protocol' %}" class="btn">Add New Protocol</a>
+        <button class="bt_style" onclick="window.location.href='{% url 'create_protocol' %}'">Add New Protocol</button>
+
 
 {% endblock %}
-{% include 'footer.html' %}
-</div>
-</body>
-</html>

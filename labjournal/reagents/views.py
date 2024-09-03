@@ -163,10 +163,12 @@ def remove_consumable_access(request, consumable_id, user_id):
 @login_required
 def view_reagent(request, pk):
     reagent = get_object_or_404(Reagents, pk=pk)
+    print(reagent.units)
 
     if reagent.owner != request.user and not ReagentsAccess.objects.filter(reagent=reagent, user=request.user,
                                                                           access_level__in=[ReagentsAccess.READ,
                                                                                             ReagentsAccess.WRITE]).exists():
+
         return HttpResponseForbidden("You are not allowed to view this reagent.")
 
     return render(request, 'reagents/view_reagent.html', {'reagent': reagent})
@@ -233,7 +235,7 @@ def delete_reagent(request, pk):
         reagent.delete()
         return redirect('reagents_list')
 
-    return render(request, 'reagents/confirm_delete.html', {'reagent': reagent})
+    return render(request, 'confirm_delete_reagent.html', {'reagent': reagent})
 
 
 @login_required
@@ -247,4 +249,4 @@ def delete_consumable(request, pk):
         consumable.delete()
         return redirect('consumables_list')
 
-    return render(request, 'consumables/confirm_delete.html', {'consumable': consumable})
+    return render(request, 'consumables/confirm_delete_project.html', {'consumable': consumable})

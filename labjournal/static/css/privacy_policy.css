@@ -3,9 +3,11 @@ body {
     line-height: 1.6;
     margin: 0;
     padding:0;
-    background-color: #CD853F;
-    color: #800000;
+    color:#2F4F4F;
+    background-color:  #D3D3D3;
+
 }
+
 
 .container {
     max-width: 800px;
@@ -13,14 +15,14 @@ body {
 }
 
 h1 {
-    color: #800000;
+    color: #2F4F4F;
     text-align: center;
 }
 
 .policy-content {
     margin-top: 0 ;
-    background: white;
-    padding: 20px;
+    background: #D3D3D3;
+    padding: 5px;
     border-radius: 8px;
 }
 

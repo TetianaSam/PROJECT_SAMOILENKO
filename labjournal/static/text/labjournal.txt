@@ -1,0 +1,60 @@
+Basic Functions
+Create records:
+
+Ability to create up to 10 records in one day.
+Each entry must contain a date, a text description, a reference to the project, and a protocol.
+Management of protocols:
+
+Ability to add protocols to records.
+Ability to download protocols in formats such as PDF or Word.
+Consumables management:
+
+Selection of consumables or reagents from a preloaded list.
+Ability to add new materials to the database if necessary.
+Formation of reports:
+
+Generate reports based on individual records.
+Generate reports for specific dates containing all records for that day.
+Data import/export:
+
+Ability to import Excel tables or attach them to records.
+Ability to export recordings to various formats for further use.
+Technical details
+User Interface (UI):
+
+A simple and intuitive interface for creating and managing records.
+Interface for selecting projects, protocols and consumables.
+Database:
+
+Storage of information about records, projects, protocols and consumables.
+Ability to search and filter records.
+Functionality of reports:
+
+Generation of reports in PDF or Word formats.
+Customize reports based on selected parameters (date, project, etc.).
+Security and access:
+
+Authentication of users to access records.
+Roles and access rights to manage records and projects.
+Data import/export:
+
+Import data from Excel to create records.
+Export records in a user-friendly format.
+Possible Tools and Technologies
+Front end:
+
+HTML/CSS/JavaScript for web interfa ce.
+Frameworks like React or Angular for dynamic content.
+Back end:
+
+Server-side in Node.js, Python (Django/Flask), Ruby on Rails, or another language of your choice.
+API for processing requests and working with the database.
+Database:
+
+SQL (MySQL, PostgreSQL) or NoSQL (MongoDB) database depending on data storage requirements.
+Hosting:
+
+Web hosting to host your application (such as AWS, Heroku, or other platforms).
+Reports:
+
+Libraries for generating reports (for example, jsPDF for PDF or libraries for working with Word documents).

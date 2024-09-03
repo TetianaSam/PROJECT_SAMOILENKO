@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .models import Protocol
+from .models import Protocol, Project
 from django.http import JsonResponse
 from django.shortcuts import get_object_or_404, redirect
 from .forms import ProtocolForm, SearchForm
@@ -36,11 +36,16 @@ def create_protocol(request):
         form = ProtocolForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
+            # Прив'язка протоколу до проектів
+            form.instance.projects.set(form.cleaned_data['projects'])
             return redirect('protocol_list')
     else:
         form = ProtocolForm()
 
-    return render(request, 'create_protocol.html', {'form': form})
+    # Отримати список проектів для відображення у формі
+    projects = Project.objects.all()
+
+    return render(request, 'create_protocol.html', {'form': form, 'projects': projects})
 @login_required
 def edit_protocol(request, pk):
     protocol = get_object_or_404(Protocol, pk=pk)
@@ -68,7 +73,7 @@ def delete_protocol(request, pk):
         if confirm_delete(request):
             protocol.delete()
             return redirect('protocol_list')
-    return render(request, 'confirm_delete.html', {'protocol': protocol})
+    return render(request, 'confirm_delete_protocols.html', {'protocol': protocol})
 
 @login_required
 def confirm_delete(request):

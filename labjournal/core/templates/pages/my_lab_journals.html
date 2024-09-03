@@ -1,13 +1,30 @@
 {% extends "master.html" %}
 {% load static %}
 
-
 {% block content %}
-
 {% block extra_css %}
     <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
     <link href="{% static 'css/style.css' %}" rel="stylesheet">
   {% endblock %}
 
-<h1>My laboratory journal</h1>
+<h1>MY NOTES </h1>
+
+<ul class="nav">
+    <li class="nav-item"><a class="nav-link" href="{% url 'notes_list' %}">List of notes</a></li>
+    <li class="nav-item"><a class="nav-link" href="{% url 'create_note' %}">Create new note</a></li>
+
+    {% for project in projects %}
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'edit_note' pk=note.id %}">Edit note {{ note.name }}</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'view_note' pk=note.id %}">View note {{ pnote.name }}</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'delete_note' %}">Delete project {{ note.name }}</a></li>
+
+        <li class="nav-item"><a class="nav-link" href="{% url 'my_lab_journals' %}">Back</a></li>
+
+    {% endfor %}
+</ul>
 {% endblock %}

@@ -28,6 +28,7 @@ urlpatterns = [
         path('projects', include("projects.urls")),
         path('resources', include("resources.urls")),
         path('reagents', include("reagents.urls")),
+        path('my-lab-journal/', include('notes.urls')),
 
         path('admin/', admin.site.urls),
 ]

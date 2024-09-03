@@ -54,7 +54,7 @@ def delete_resource(request, pk):
     if request.method == 'POST':
         resource.delete()
         return redirect('resource_list')
-    return render(request, 'confirm_delete.html', {'resource': resource})
+    return render(request, 'confirm_delete_resource.html', {'resource': resource})
 
 
 @login_required

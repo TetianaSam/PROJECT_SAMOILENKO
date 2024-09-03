@@ -1,16 +1,21 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Add Resource</title>
-</head>
-<body>
+{% extends 'master.html' %}
+{% load static %}
+
+{% block title %}About Us{% endblock %}
+
+{% block content %}
+
+{% block extra_css %}
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+{% endblock %}
+
     <h1>Add new Resource</h1>
     <form method="post">
         {% csrf_token %}
         {{ form.as_p }}
-        <button type="submit">Add Resource</button>
+        <button class="bt_style"type="submit">Add Resource</button>
     </form>
-    <a href="{% url 'resource_list' %}">Back to Resource List</a>
-</body>
-</html>
+<button class="bt_style" onclick="window.location.href='{% url 'resource_list' %}'">Back to Resource List</button>
+
+{% endblock %}

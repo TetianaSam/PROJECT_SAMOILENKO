@@ -11,22 +11,22 @@ class UserFile(models.Model):
         return self.title
 
 class Reagents(models.Model):
-    reagent_position = models.IntegerField()
+    owner = models.ForeignKey(User, on_delete=models.CASCADE, related_name='owned_reagents')
     name = models.CharField(max_length=100)
     units = models.CharField(max_length=100)
-    storage_temp =models.CharField(max_length=100)
+    amount =models.IntegerField(default=0)
+    storage_temperature =models.CharField(max_length=100)
     cat_number =models.CharField(max_length=100)
     lot = models.CharField(max_length=100)
     producer = models.CharField(max_length=100)
-    reagent_descr = models.TextField(default="N/A")
-    owner = models.ForeignKey(User, on_delete=models.CASCADE, related_name='owned_reagents')  # Власник проекту
+    reagent_description = models.TextField(default="N/A")
     delivery_date = models.DateField()
     expiration_date = models.DateField()
 
     file = models.FileField(upload_to='reagents/', blank=True, null=True)  # Робимо поле файлу необов'язковим
 
-    def __str__(self):
-        return self.name
+    #def __str__(self):
+       #return self.name
 
 class ReagentsAccess(models.Model):
     READ = 'read'

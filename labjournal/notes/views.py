@@ -72,7 +72,7 @@ def manage_note_access(request, pk):
     existing_access = note.access_permissions.all()
 
     return render(request, 'manage_access_note.html', {
-        'project': project,
+        'note': note,
         'form': form,
         'existing_access': existing_access
     })
@@ -111,7 +111,7 @@ def view_note(request, pk):
 
 @login_required
 def edit_note(request, pk):
-    note = get_object_or_404(Note, pk=pk)
+    note = get_object_or_404(Notes, pk=pk)
 
     if note.owner != request.user and not NoteAccess.objects.filter(note=note, user=request.user,
                                                                           access_level=NoteAccess.WRITE).exists():

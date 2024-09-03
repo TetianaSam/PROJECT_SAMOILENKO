@@ -6,7 +6,7 @@ from django.contrib.auth.models import User
 class NotesForm(forms.ModelForm):
     class Meta:
         model = Notes
-        fields = ['owner', 'note_topic', 'note_text', 'file']  # Переконайтеся, що ім'я поля правильне
+        fields = ['owner', 'note_topic', 'note_text', 'file', 'project', 'protocol', 'reagent', 'consumable']  # Переконайтеся, що ім'я поля правильне
         widgets = {
             'file': forms.ClearableFileInput(attrs={'multiple': False}),
         }

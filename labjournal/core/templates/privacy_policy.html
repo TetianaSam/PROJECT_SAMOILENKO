@@ -2,28 +2,20 @@
 {% load static %}
 
 {% block content %}
-<!DOCTYPE html>
-<html lang="cs">
-<head>
-    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+{% block extra_css %}
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+  {% endblock %}
+
     <title>Zásady ochrany osobních údajů</title>
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
 
-
-</head>
-
-<body>
     <div class="container-fluid">
         <h1>Zásady ochrany osobních údajů</h1>
 
-        <!-- Display the content from the text file -->
-        <div class="policy-content">
             {{ policy_content|linebreaks }}
-        </div>
+
     </div>
 
-
-</body>
-</html>
 {% endblock %}

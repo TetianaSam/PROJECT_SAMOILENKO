@@ -1,7 +1,5 @@
 from django.db import models
 from django.contrib.auth.models import User
-
-# Імпортуйте необхідні моделі
 from projects.models import Project
 from protocols.models import Protocol
 from reagents.models import Reagents
@@ -31,7 +29,7 @@ class Notes(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
     owner = models.ForeignKey(User, on_delete=models.CASCADE, related_name='owned_notes')
     note_topic = models.CharField(max_length=150)
-    note_text = models.CharField(max_length=1000)
+    note_text = models.TextField()  # Changed to TextField for better handling of long text
     file = models.FileField(upload_to='notes/', blank=True, null=True)
     project = models.ForeignKey(Project, on_delete=models.CASCADE, related_name='notes')
     protocol = models.ForeignKey(Protocol, on_delete=models.CASCADE, related_name='notes')
@@ -42,6 +40,10 @@ class Notes(models.Model):
     def __str__(self):
         return self.note_topic
 
+    class Meta:
+        indexes = [
+            models.Index(fields=['owner', 'note_topic']),
+        ]
 
 class NoteAccess(models.Model):
     READ = 'read'

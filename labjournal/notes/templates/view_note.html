@@ -1,0 +1,41 @@
+{% extends 'master.html' %}
+{% load static %}
+
+{% block content %}
+    {% block extra_css %}
+      <link href="{% static 'css/style.css' %}" rel="stylesheet">
+    {% endblock %}
+
+
+    <h1>{{ note.note_topic }}</h1>
+    <p>Owner: {{ note.owner.username }}</p>
+    <p><strong>Date:</strong> {{ note.date_of_action }}<strong>Created:</strong> {{ note.created_at }}<strong>Updated:</strong> {{ note.updated_at }}</p>
+
+    <p><strong>Project:</strong> {{ note.project }}
+    <button class="bt_style" type="button" onclick="window.location.href='{% url 'project_detail' note.project.pk %}'">Open Project</button>
+
+    <p><strong>Protocols:</strong> {{ note.protocol }}
+    <button class="bt_style" type="button" onclick="window.location.href='{% url 'view_protocol' note.protocol.pk %}'">Open Protocol</button>
+
+    <p><strong>Reagents:</strong> {{ note.reagent }}
+    <button class="bt_style" type="button" onclick="window.location.href='{% url 'view_reagent' note.reagent.pk %}'">Open Reagent</button>
+
+    <p><strong>Consumables:</strong> {{ note.consumable }}
+    <button class="bt_style" type="button" onclick="window.location.href='{% url 'view_consumable' note.consumable.pk %}'">Open Consumable</button>
+
+    <p><strong>Note text:</strong> {{ note.note_text }}</p>
+
+        {% if note.file %}
+            <p><strong>File:</strong> <a href="{{ note.file.url }}" target="_blank">View File</a></p>
+        {% else %}
+            <p>No files</p>
+        {% endif %}
+
+        {% if user == note.owner %}
+            <button class="bt_style" type="button" onclick="window.location.href='{% url 'manage_note_access' note.pk %}'">Manage Access</button>
+        {% endif %}
+    <button class="bt_style" type="button" onclick="window.location.href='{% url 'edit_note' pk=note.pk %}'">Edit</button>
+    <button class="bt_style" type="button" onclick="window.location.href='{% url 'delete_note' pk=note.pk %}'">Delete</button>
+    <button class="bt_style" type="button" onclick="window.location.href='{% url 'notes_list' %}'">Back to Notes List</button>
+
+{% endblock %}

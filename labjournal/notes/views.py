@@ -1,14 +1,12 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
-from django.http import HttpResponseForbidden, HttpResponseNotFound
+from django.http import HttpResponseForbidden, HttpResponseNotFound, HttpResponse
 from .models import Notes, NoteAccess
 from .forms import NotesForm, SearchForm, NoteAccessForm
 from django.contrib import messages
-from projects.models import Project
-from protocols.models import Protocol
-from reagents.models import Reagents
-from reagents.models import Consumables
-
+from reportlab.lib.pagesizes import letter
+from reportlab.pdfgen import canvas
+from io import BytesIO
 
 
 @login_required
@@ -96,18 +94,25 @@ def remove_note_access(request, note_id, user_id):
 def view_note(request, pk):
     note = get_object_or_404(Notes, pk=pk)
 
-    # Перевірка прав доступу для перегляду
-    if note.owner != request.user and not NoteAccess.objects.filter(note = note, user=request.user,
-                                                                          access_level__in=[NoteAccess.READ,
-                                                                                            NoteAccess.WRITE]).exists():
-        return HttpResponseForbidden("You are not allowed to view this project.")
+    if note.owner != request.user and not NoteAccess.objects.filter(
+            note=note,
+            user=request.user,
+            access_level__in=[NoteAccess.READ, NoteAccess.WRITE]
+    ).exists():
+        return HttpResponseForbidden("You are not allowed to view this note.")
 
-    notes = note.protocols.all()
-    notes = note.projects.all()
-    notes = note.reagents.all()
-    notes = note.consumables.all()
+    protocol = note.protocol
+    project = note.project
+    reagent = note.reagent
+    consumable = note.consumable
 
-    return render(request, 'view_note.html', {'note': note, 'project': project, 'protocols': protocols, 'reagent':reagent, 'consumable':consumable})
+    return render(request, 'view_note.html', {
+        'note': note,
+        'protocol': protocol,
+        'project': project,
+        'reagent': reagent,
+        'consumable': consumable,
+    })
 
 @login_required
 def edit_note(request, pk):

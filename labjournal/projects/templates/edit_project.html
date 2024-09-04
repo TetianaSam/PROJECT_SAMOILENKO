@@ -7,7 +7,7 @@
     <link href="{% static 'css/style.css' %}" rel="stylesheet">
 {% endblock %}
 
-<body>
+
     <h1>Edit Project</h1>
     <form method="post" enctype="multipart/form-data">
         {% csrf_token %}
@@ -15,5 +15,5 @@
         <button class="bt_style" type="submit">Save Changes</button>
     </form>
      <button class="bt_style" onclick="window.location.href='{% url 'project_list' %}'">Back</button>
-</body>
+
 {% endblock %}

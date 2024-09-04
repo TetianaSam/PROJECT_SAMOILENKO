@@ -20,7 +20,6 @@ class NameField(models.CharField):
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     name = NameField(blank=False)
-    email = models.EmailField(max_length=254, unique=True, blank=True, null=True)  # Поле для email
     profile_image = models.ImageField(default='default.png', upload_to='profile_images/', null=True, blank=True)
 
     def __str__(self):

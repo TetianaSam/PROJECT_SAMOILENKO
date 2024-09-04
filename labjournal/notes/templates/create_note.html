@@ -12,7 +12,7 @@
         {% csrf_token %}
         {{ form.as_p }}
         <button class="bt_style" type="submit">Save</button>
-        <button  class="bt_style" type="button" onclick="window.location.href ='{% url 'notes_list'%}'" Back to Note Lis </button>
+        <button  class="bt_style" type="button" onclick="window.location.href ='{% url 'notes_list'%}'">Back</button>
     </form>
 
 {% endblock %}

@@ -22,12 +22,11 @@ class ProfileForm(forms.ModelForm):
 
     class Meta:
         model = Profile
-        fields = ['name', 'email', 'profile_image']
+        fields = ['name', 'profile_image']
 
     def save(self, *args, **kwargs):
         profile = super(ProfileForm, self).save(*args, **kwargs)
         if self.cleaned_data['email']:
-            # Оновлення email у моделі User
             profile.user.email = self.cleaned_data['email']
             profile.user.save()
         return profile

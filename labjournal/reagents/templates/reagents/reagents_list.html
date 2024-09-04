@@ -14,7 +14,7 @@
 
   <form method="get" action="{% url 'reagents_list' %}">
     {{ search_form.as_p }}
-    <button type="submit">Search</button>
+    <button class="bt_style" type="submit">Search</button>
   </form>
 
   <table>
@@ -42,4 +42,5 @@
     </tbody>
   </table>
 <button class="bt_style" onclick="window.location.href='{% url 'create_reagent' %}'">Add New Reagent</button>
+<button class="bt_style" onclick="window.location.href='{% url 'reagents_and_consumables' %}'">Back</button>
 {% endblock %}

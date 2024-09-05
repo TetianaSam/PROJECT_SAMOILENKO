@@ -1,15 +1,57 @@
 {% extends 'master.html' %}
+{% load static %}
 
+{% block title %}View reagent{% endblock %}
 
 {% block content %}
-<h1>View Consumable</h1>
 
-  <p><strong>Name:</strong> {{ consumable.name }}</p>
-  <p><strong>Description:</strong> {{ consumable.description }}</p>
-  <p><strong>Owner:</strong> {{ consumable.owner.username }}</p>
-  <p><strong>Created At:</strong> {{ consumable.created_at }}</p>
+{% block extra_css %}
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+{% endblock %}
 
-  <a href="{% url 'edit_consumable' consumable.pk %}">Edit</a>
-  <a href="{% url 'delete_consumable' consumable.pk %}" onclick="return confirm('Are you sure?');">Delete</a>
-  <a href="{% url 'consumables_list' %}">Back to List</a>
+<h1>Consumable's details</h1>
+
+<table>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Units</th>
+            <th>Amount</th>
+            <th>Storage temperature</th>
+            <th>Catalog number</th>
+            <th>Lot number</th>
+            <th>Producer</th>
+            <th>Description</th>
+            <th>Delivery date</th>
+            <th>Expiration date</th>
+            <th>File</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+
+
+            <tr>
+                <td>{{ consumable.name }}</td>
+                <td>{{ consumable.units }}</td>
+                <td>{{ consumable.amount }}</td>
+                <td>{{ consumable.storage_temperature }}</td>
+                <td>{{ consumable.cat_number }}</td>
+                <td>{{ consumable.lot }}</td>
+                <td>{{ consumable.producer }}</td>
+                <td>{{ consumable.consumable_descr}}</td>
+                <td>{{ consumable.delivery_date }}</td>
+                <td>{{ consumable.expiration_date }}</td>
+                <td>{{ consumable.file }}</td>
+                <td>
+                    <button class="bt_style" onclick="window.location.href='{% url 'edit_consumable' consumable.pk %}'">Edit</button>
+                    <button class="bt_style" onclick="if (confirm('Are you sure?')) { window.location.href='{% url 'delete_consumable' consumable.pk %}'; }">Delete</button>
+                </td>
+            </tr>
+    </tbody>
+</table>
+
+<button class="bt_style" onclick="window.location.href='{% url 'consumables_list' %}'">Back</button>
+
 {% endblock %}

@@ -9,6 +9,9 @@ class ReagentsForm(forms.ModelForm):
                   'delivery_date', 'expiration_date', 'file']
         widgets = {
             'file': forms.ClearableFileInput(attrs={'multiple': False}),
+            'delivery_date': forms.DateInput(attrs={'type': 'date'}),
+            'expiration_date': forms.DateInput(attrs={'type': 'date'}),
+            'reagent_description': forms.Textarea(attrs={'rows': 4, 'cols': 40}),
         }
 
     def __init__(self, *args, **kwargs):
@@ -29,12 +32,24 @@ class ReagentsAccessForm(forms.ModelForm):
 class ConsumablesForm(forms.ModelForm):
     class Meta:
         model = Consumables
-        fields = ['consum_position', 'name', 'units', 'storage_temp', 'cat_number', 'lot', 'producer',
-                  'consum_descr', 'delivery_date', 'expiration_date', 'file']
+        fields = [
+            'name',
+            'units',
+            'amount',
+            'storage_temp',
+            'cat_number',
+            'lot',
+            'producer',
+            'consumable_descr',
+            'delivery_date',
+            'expiration_date',
+            'file'
+        ]
         widgets = {
-            'file': forms.ClearableFileInput(attrs={'multiple': False}),
+            'delivery_date': forms.DateInput(attrs={'type': 'date'}),
+            'expiration_date': forms.DateInput(attrs={'type': 'date'}),
+            'consumable_descr': forms.Textarea(attrs={'rows': 4, 'cols': 40}),
         }
-
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.fields['file'].required = False

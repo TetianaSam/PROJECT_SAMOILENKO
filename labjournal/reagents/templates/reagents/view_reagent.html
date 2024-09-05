@@ -10,7 +10,7 @@
     <link href="{% static 'css/style.css' %}" rel="stylesheet">
 {% endblock %}
 
-<h1>View Reagent</h1>
+<h1>Reagent's details</h1>
 
 <table>
     <thead>
@@ -48,9 +48,9 @@
                     <button class="bt_style" onclick="if (confirm('Are you sure?')) { window.location.href='{% url 'delete_reagent' reagent.pk %}'; }">Delete</button>
                 </td>
             </tr>
-
-
     </tbody>
 </table>
+
+<button class="bt_style" onclick="window.location.href='{% url 'reagents_list' %}'">Back</button>
 
 {% endblock %}

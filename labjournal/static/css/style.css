@@ -6,6 +6,8 @@ body {
 	background-image:
 	padding: 0;
 	margins: 0;
+	height: 100%;
+    overflow-y: auto;
 }
 .container_fluid {
 	font-family: Arial, sans-serif;

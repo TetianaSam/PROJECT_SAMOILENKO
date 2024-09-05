@@ -47,19 +47,19 @@ class ReagentsAccess(models.Model):
         return f'{self.user.username} - {self.reagent.name} ({self.get_access_level_display()})'
 
 class Consumables(models.Model):
-    consum_position = models.IntegerField()
+    owner = models.ForeignKey(User, on_delete=models.CASCADE, related_name='owned_consumables')
     name = models.CharField(max_length=100)
     units = models.CharField(max_length=100)
+    amount = models.IntegerField(default=0)
     storage_temp = models.CharField(max_length=100)
     cat_number = models.CharField(max_length=100)
     lot = models.CharField(max_length=100)
     producer = models.CharField(max_length=100)
-    consum_descr = models.TextField(default="N/A")
-    owner = models.ForeignKey(User, on_delete=models.CASCADE, related_name='owned_consumables')  # Власник проекту
+    consumable_descr = models.TextField(default="N/A")
     delivery_date = models.DateField()
     expiration_date = models.DateField()
 
-    file = models.FileField(upload_to='consumables/', blank=True, null=True)  # Робимо поле файлу необов'язковим
+    file = models.FileField(upload_to='consumables/', blank=True, null=True)
 
     def __str__(self):
         return self.name

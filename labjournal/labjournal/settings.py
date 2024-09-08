@@ -25,7 +25,8 @@ SECRET_KEY = 'django-insecure-usg^=srf*-zq1zv#e_qr4qs^)n)!4*z9-bjh5hiar4t8jcf^th
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['yourusername.pythonanywhere.com', 'localhost', '127.0.0.1']
+
 
 
 # Application definition
@@ -89,9 +90,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
- }}
-
-
+    }
+}
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
 
@@ -125,12 +125,11 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
+STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
-STATIC_URL = 'static/'
 
-STATICFILES_DIRS = [BASE_DIR / "static"]
 
-STATIC_ROOT = BASE_DIR / "staticfiles"
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
@@ -143,8 +142,17 @@ LOGIN_URL = 'login'
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
 # Session settings
 SESSION_ENGINE = 'django.contrib.sessions.backends.db'  # Можливі варіанти: db, cache, file тощо
 SESSION_COOKIE_NAME = 'sessionid'
-ALLOWED_HOSTS = ['localhost', '127.0.0.1']
 
+
+SECRET_KEY = os.getenv('DJANGO_SECRET_KEY', 'django-insecure-usg^=srf*-zq1zv#e_qr4qs^)n)!4*z9-bjh5hiar4t8jcf^th')
+
+
+SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = True
+X_FRAME_OPTIONS = 'DENY'
+SECURE_BROWSER_XSS_FILTER = True
+SECURE_CONTENT_TYPE_NOSNIFF = True

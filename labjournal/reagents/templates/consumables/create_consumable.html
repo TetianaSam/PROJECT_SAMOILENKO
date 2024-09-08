@@ -13,7 +13,7 @@
   <form method="post" enctype="multipart/form-data">
     {% csrf_token %}
     {{ form.as_p }}
-    <button class="bt_style" type="submit">Save</button>
+    <button class="bt_style" type="submit">Save</button>  <button class="bt_style" onclick="window.location.href='{% url 'consumables_list' %}'">Back</button>
   </form>
-<button class="bt_style" onclick="window.location.href='{% url 'consumables_list' %}'">Back</button>
+
 {% endblock %}

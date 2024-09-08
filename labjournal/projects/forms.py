@@ -8,6 +8,9 @@ class ProjectForm(forms.ModelForm):
         fields = ['name', 'project_description', 'date_start', 'date_finish', 'file']  # Поле owner не включається у форму
         widgets = {
             'file': forms.ClearableFileInput(attrs={'multiple': False}),
+            'date_start': forms.DateInput(attrs={'type': 'date'}),
+            'date_finish': forms.DateInput(attrs={'type': 'date'}),
+            'project_description': forms.Textarea(attrs={'rows': 4, 'cols': 40}),
         }
 
     def __init__(self, *args, **kwargs):

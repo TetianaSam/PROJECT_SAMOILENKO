@@ -42,7 +42,7 @@ INSTALLED_APPS = [
     'core',
     'users',
     'resources',
-    'bootstrap5',
+    'django_bootstrap5',
     'projects',
     'crispy_forms',
     'reagents',

@@ -1,0 +1,14 @@
+{% extends 'master.html' %}
+{% load static %}
+
+{% block content %}
+{% block extra_css %}
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+{% endblock %}
+
+
+    <h2>You have been logged out</h2>
+    <button class="bt_style" onclick="window.location.href='{% url 'login' %}'">Log In Again</button>
+
+{% endblock %}

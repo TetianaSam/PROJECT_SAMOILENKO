@@ -1,0 +1,23 @@
+{% load static %}
+{% load bootstrap5 %}
+
+
+  {% block extra_css %}
+   <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  {% endblock %}
+
+  {% bootstrap_css %}
+  {% bootstrap_javascript %}
+
+
+  <div class="container-fluid">
+    {% include 'header.html' %}
+
+    {% block content %}
+
+    {% endblock %}
+
+
+    {% include 'footer.html' %}
+  </div>
+

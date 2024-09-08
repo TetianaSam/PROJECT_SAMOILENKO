@@ -1,0 +1,17 @@
+{% extends 'master.html' %}
+{% load static %}
+
+{% block content %}
+    {% block extra_css %}
+      <link href="{% static 'css/style.css' %}" rel="stylesheet">
+    {% endblock %}
+
+
+    <h1>Manage Access for {{ note.note_topic}}</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Add Access</button>
+    </form>
+ {% endblock %}
+

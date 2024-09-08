@@ -1,0 +1,50 @@
+{% extends 'master.html' %}
+{% load static %}
+
+{% block content %}
+{% block extra_css %}
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+{% endblock %}
+    <h2>Project List</h2>
+    <form method="get" action="{% url 'project_list' %}">
+        {{ search_form.as_p }}
+        <button class="bt_style" type="submit">Search</button>
+    </form>
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th>Start Date</th>
+                    <th>Finish Date</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for project in projects %}
+                <tr>
+                    <td><a href="{% url 'project_detail' pk=project.pk %}">{{ project.name }}</a></td>
+                    <td>{{ project.project_description }}</td>
+                    <td>{{ project.date_start }}</td>
+                    <td>{{ project.date_finish }}</td>
+                    <td>
+                        <button class="bt_style" type="button" onclick="window.location.href='{% url 'edit_project' pk=project.pk %}'">Edit</a></button>
+                        <button class="bt_style" type="button" onclick="window.location.href='{% url 'delete_project' pk=project.pk %}'">Delete</a></button>
+                        <button class="bt_style" type="button" onclick="window.location.href='{% url 'project_detail' pk=project.pk %}'">Preview</a></button>
+                    </td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="5">No projects found.</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <button class="bt_style" type="button" onclick="window.location.href='{% url 'create_project' %}'">Create New Project</button>
+        <button class="bt_style" type="button" onclick="window.location.href='{% url 'my_projects' %}'">Back</button>
+
+    </body>
+    </html>
+
+{% endblock %}

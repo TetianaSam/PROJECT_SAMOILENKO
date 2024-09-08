@@ -1,0 +1,20 @@
+{% extends 'master.html' %}
+{% load static %}
+
+{% block title %}Confirm delete{% endblock %}
+
+{% block content %}
+
+{% block extra_css %}
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+{% endblock %}
+
+    <h1>Confirm Delete</h1>
+    <p>Are you sure you want to delete the project "{{ project.name }}"?</p>
+    <form method="post">
+        {% csrf_token %}
+        <button class="bt_style" type="submit">Confirm Delete</button>
+
+    </form>
+    <button  class="bt_style" onclick="window.location.href='{% url 'reagents_and_consumables' %}'">Cancel</button>
+{% endblock %}

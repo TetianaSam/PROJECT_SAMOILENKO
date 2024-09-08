@@ -1,0 +1,43 @@
+{% extends "master.html" %}
+{% load static %}
+
+{% block content %}
+
+{% block extra_css %}
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+{% endblock %}
+
+<h1>Consumables List</h1>
+
+  <form method="get" action="{% url 'consumables_list' %}">
+    {{ search_form.as_p }}
+    <button class="bt_style" type="submit">Search</button>
+  </form>
+
+
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for consumable in consumables %}
+        <tr>
+          <td>{{ consumable.name }}</td>
+          <td>{{ consumable.consumable_descr }}</td>
+          <td>
+            <button class="bt_style" onclick="window.location.href='{% url 'view_consumable' consumable.pk %}'">View</button>
+            <button class="bt_style" onclick="window.location.href='{% url 'edit_consumable' consumable.pk %}'">Edit</button>
+            <button class="bt_style" onclick="window.location.href='{% url 'delete_consumable' consumable.pk %}'" onclick="return confirm('Are you sure?');">Delete</button>
+          </td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+<button class="bt_style" onclick="window.location.href='{% url 'create_consumable' %}'">Add New Consumable</button>
+<button class="bt_style" onclick="window.location.href='{% url 'reagents_and_consumables' %}'">Back</button>
+{% endblock %}

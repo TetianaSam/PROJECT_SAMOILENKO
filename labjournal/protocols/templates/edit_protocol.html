@@ -1,0 +1,22 @@
+{% extends 'master.html' %}
+{% load static %}
+
+{% block title %}About Us{% endblock %}
+
+{% block content %}
+{% block extra_css %}
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+{% endblock %}
+    <head>
+        <meta charset="UTF-8">
+        <title>Edit protocol</title>
+    </head>
+    <body>
+    <h1>Edit protocol</h1>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button class="bt_style" type="submit">Save change</button>
+    </form>
+{% endblock %}

@@ -1,0 +1,21 @@
+{% extends 'master.html' %}
+{% load static %}
+
+{% block content %}
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+{% block extra_css %}
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+  {% endblock %}
+
+    <title>Zásady ochrany osobních údajů</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+    <div class="container-fluid">
+        <h1>Zásady ochrany osobních údajů</h1>
+
+            {{ policy_content|linebreaks }}
+
+    </div>
+
+{% endblock %}

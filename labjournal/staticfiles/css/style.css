@@ -1,0 +1,17 @@
+body { 
+	font-family: Arial, sans-serif;
+	color:#800000;
+	background-color: #CD853F;
+
+}
+
+.nav bg-info {
+    background-color:#CD853F;
+}
+
+.container_fluid {
+	font-family: Arial, sans-serif;
+	color: #800000;
+	background-color:#CD853F;
+}
+

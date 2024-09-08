@@ -1,0 +1,18 @@
+{% extends 'master.html' %}
+{% load static %}
+
+{% block content %}
+{% block extra_css %}
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+{% endblock %}
+
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button class="bt_style" type="submit">Login</button>
+    </form>
+    <small>
+        Need An Account? <button class="bt_style" onclick="window.location.href='{% url 'register' %}'">Sign Up Now</button>
+    </small>
+{% endblock %}

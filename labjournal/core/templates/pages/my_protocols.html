@@ -1,0 +1,38 @@
+{% extends "master.html" %}
+{% load static %}
+
+{% block content %}
+
+  {% block extra_css %}
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+  {% endblock %}
+
+<h1>MY PROTOCOLS</h1>
+    <p>
+        Welcome to the "My Protocols" section! Here, you can view and manage all the protocols you have created or have access to.
+    </p>
+    <p>
+        You can create new protocols, edit existing ones, and attach relevant files to keep your work organized. If a protocol is linked to a specific project, you'll find it categorized accordingly.
+    </p>
+    <p>
+        Use this section to keep track of your experimental procedures, ensure consistency, and share your methods with collaborators. Happy documenting!
+    </p>
+
+<ul class="nav">
+    <li class="nav-item"><a class="nav-link" href="{% url 'protocol_list' %}">List of protocols</a></li>
+    <li class="nav-item"><a class="nav-link " href="{% url 'create_protocol' %}">Create new protocol</a></li>
+    {% for protocol in protocols %}
+        <li class="nav-item">
+            <a class="nav-link " href="{% url 'edit_protocol' pk=protocol.id %}">Edit protocol {{ protocol.name }}</a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link " href="{% url 'delete_protocol' %}">Delete protocol {{ protocol.name }}</a></li>
+
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'download_protocol' %}">Download protocol {{ protocol.name }}</a></li>
+    {% endfor %}
+</ul>
+
+{% endblock %}

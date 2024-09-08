@@ -1,0 +1,19 @@
+{% extends 'master.html' %}
+{% load static %}
+
+{% block content %}
+{% block extra_css %}
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+{% endblock %}
+
+
+    <h1>Edit Project</h1>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button class="bt_style" type="submit">Save Changes</button>
+    </form>
+     <button class="bt_style" onclick="window.location.href='{% url 'project_list' %}'">Back</button>
+
+{% endblock %}

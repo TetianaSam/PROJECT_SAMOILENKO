@@ -1,0 +1,34 @@
+{% extends 'master.html' %}
+{% load static %}
+
+{% block title %}About Us{% endblock %}
+
+{% block content %}
+{% block extra_css %}
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+  {% endblock %}
+<section class="container my-3">
+    <h1 class="display-3">About LabJournal</h1>
+    <p class="lead">LabJournal is a web application designed specifically for researchers, scientists, and students. Our primary goal is to streamline and enhance the process of documenting laboratory work, making research more efficient and less prone to errors.</p>
+
+    <h2>Purpose</h2>
+    <p>LabJournal addresses the common challenges faced by researchers and students who struggle with organizing their notes and maintaining accurate records. By providing a digital platform for recording, managing, and retrieving experimental data, we aim to simplify research workflows, improve data accessibility, and ensure that critical information is never lost.</p>
+    <p>Whether you are conducting experiments, managing multiple research projects, or just starting your journey in the scientific field, LabJournal offers a user-friendly solution to keep your research organized and easily accessible.</p>
+
+    <h2>Features for PhD Students and Pre-Graduates</h2>
+    <ul class="list-group bg-dark">
+        <li class="list-group-item ">Organized Documentation: Keep all your lab notes, protocols, and research data in one central, easily accessible location.</li>
+        <li class="list-group-item">Search and Filter: Quickly locate specific entries using powerful search and filtering options. This feature helps you find critical information without sifting through extensive records.</li>
+        <li class="list-group-item">Project Management: Efficiently track and manage various research projects from start to finish. Keep detailed logs, track progress, and stay on top of your research milestones.</li>
+        <li class="list-group-item">Secure Access: Protect your data with secure login and access controls. LabJournal ensures that your research is safeguarded against unauthorized access and data breaches.</li>
+        <li class="list-group-item">Collaboration Tools: Share research data and collaborate with colleagues and mentors seamlessly. Our platform supports collaboration, allowing you to work together on research projects and share findings effortlessly.</li>
+        <li class="list-group-item">Customizable Templates: Use pre-designed templates or create your own to suit your specific research needs. This flexibility ensures that LabJournal adapts to your workflow.</li>
+    </ul>
+
+    <h2>Developers</h2>
+    <p>This application was developed by Tetiana Samoilenko. Our mission is to provide researchers with a practical and effective tool to manage their work more efficiently and enhance their research experience. We are committed to continually improving LabJournal based on user feedback and advancements in technology.</p>
+    <p>If you have any questions or suggestions, please feel free to contact us. We are always eager to hear from our users and make LabJournal better for everyone.</p>
+</section>
+
+{% endblock %}

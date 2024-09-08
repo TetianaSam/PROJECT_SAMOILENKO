@@ -1,0 +1,59 @@
+{% extends 'master.html' %}
+{% load static %}
+
+{% block content %}
+{% block extra_css %}
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+{% endblock %}
+
+
+
+    <h1>List of Protocols</h1>
+
+        <form method="get" action="{% url 'protocol_list' %}">
+            {{ search_form.as_p }}
+
+        </form>
+        <button class="bt_style" type="submit" >Search</button>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Date of Creation</th>
+                    <th>Date of Editing</th>
+                    <th>File Size</th>
+                    <th>Type of Files</th>
+                    <th> </th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for protocol in protocols %}
+                    <tr>
+                        <td data-label="Name">
+                            <a href="{% url 'view_protocol' protocol.pk %}">{{ protocol.name }}</a>
+                        </td>
+                        <td data-label="Date of Creation">{{ protocol.created_at }}</td>
+                        <td data-label="Date of Editing">{{ protocol.updated_at }}</td>
+                        <td data-label="File Size">{{ protocol.file_size|filesizeformat }}</td>
+                        <td data-label="Type of Files">{{ protocol.file_type }}</td>
+                        <td data-label=" " class="actions">
+                            <button class="bt_style" onclick="window.location.href='{% url 'view_protocol' protocol.pk %}'">Preview</button>
+                            <button class="bt_style" onclick="window.location.href='{% url 'edit_protocol' protocol.pk %}'">Edit</button>
+                            <button class="bt_style" onclick="window.location.href='{% url 'delete_protocol' protocol.pk %}'" onclick="return confirm('Are you sure you want to delete this protocol?');">Delete</button>
+                            <button class="bt_style" onclick="window.location.href='{% url 'download_protocol' protocol.pk %}'">Download</button>
+                        </td>
+                    </tr>
+                {% empty %}
+                    <tr>
+                        <td colspan="6" class="no-protocols">List of protocols is empty</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <button class="bt_style" onclick="window.location.href='{% url 'create_protocol' %}'">Add New Protocol</button>
+
+<button class="bt_style" onclick="window.location.href='{% url 'my_protocols' %}'">Back</button>
+{% endblock %}

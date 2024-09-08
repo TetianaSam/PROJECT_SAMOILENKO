@@ -1,0 +1,21 @@
+{% extends 'master.html' %}
+{% load static %}
+
+{% block title %}About Us{% endblock %}
+
+{% block content %}
+
+{% block extra_css %}
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+{% endblock %}
+
+    <h1>Confirm Delete</h1>
+    <p>Are you sure you want to delete "{{ resource.description }}"?</p>
+    <form method="post">
+        {% csrf_token %}
+        <button class="bt_style"  type="submit">Confirm</button>
+    </form>
+
+    <button class="bt_style" onclick="window.location.href='{% url 'resource_list' %}'">Cancel</button>
+{% endblock %}

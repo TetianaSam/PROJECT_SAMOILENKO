@@ -1,0 +1,19 @@
+{% extends 'master.html' %}
+{% load static %}
+
+{% block title %}Confirm delete{% endblock %}
+
+{% block content %}
+
+{% block extra_css %}
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+{% endblock %}
+
+    <h1>Confirm Remove  To Note</h1>
+    <p>Are you sure you want to remove access for {{ access.user.username }}?</p>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit">Yes, Remove Access</button>
+    </form>
+    <a href="{% url 'manage_note_access' note.id %}">Cancel</a>
+{% endblock %}

@@ -1,0 +1,36 @@
+This section provides essential resources and tools that can be valuable for scientists
+in the fields of biology, DNA sequencing, and genomics. It includes key databases,
+data analysis software, and platforms for visualizing genomic information. Utilizing these resources
+will help streamline access
+o important data, optimize analysis processes, and support high-quality scientific research.
+
+
+Моделі бази даних: Створіть моделі для ресурсів і пропозицій.
+Форми: Розробіть форми для додавання нових ресурсів та для пропозицій користувачів.
+Види (views): Реалізуйте логіку для відображення таблиці ресурсів, додавання нових ресурсів і обробки пропозицій.
+Шаблони (templates): Розробіть HTML-шаблони для відображення таблиці ресурсів, форм для додавання і пропозицій.
+URL-і: Налаштуйте URL-шляхи для нових сторінок і функцій
+
+Логіка роботи
+Сторінка списку ресурсів (resource_list):
+
+Відображає таблицю всіх ресурсів.
+Містить форму для пошуку та фільтрації ресурсів.
+Форма додавання ресурсу (add_resource):
+
+Дозволяє додати новий ресурс.
+Форма редагування ресурсу (edit_resource):
+
+Дозволяє редагувати існуючий ресурс.
+Підтвердження видалення ресурсу (delete_resource):
+
+Показує підтвердження перед видаленням ресурсу.
+Список пропозицій (suggestion_list):
+
+Відображає всі пропозиції, які потребують перевірки.
+Форма додавання пропозиції (add_suggestion):
+
+Дозволяє користувачам додавати нові пропозиції.
+Перегляд пропозиції (review_suggestion):
+
+Дозволяє адміністраторам переглядати та підтверджувати пропозиції.

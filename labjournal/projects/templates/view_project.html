@@ -1,0 +1,43 @@
+{% extends 'master.html' %}
+{% load static %}
+
+
+  {% block content %}
+    {% block extra_css %}
+      <link href="{% static 'css/style.css' %}" rel="stylesheet">
+    {% endblock %}
+
+    <h1>{{ project.name }}</h1>
+    <p>Owner: {{ project.owner.username }}</p>
+    <p><strong>Description:</strong> {{ project.project_description }}</p>
+    <p><strong>Start Date:</strong> {{ project.date_start }}</p>
+    <p><strong>Finish Date:</strong> {{ project.date_finish }}</p>
+    {% if project.file %}
+    <p><strong>File:</strong> <a href="{{ project.file.url }}" target="_blank">View File</a></p>
+    {% endif %}
+
+    <!-- Додаємо кнопку Manage Access -->
+    {% if user == project.owner %}
+        <button  class="bt_style" type="button" onclick="window.location.href='{% url 'manage_project_access' project.pk %}'">Manage Access</button>
+    {% endif %}
+
+    <button  class="bt_style" type="button" onclick="window.location.href='{% url 'edit_project' pk=project.pk %}'">Edit</button>
+    <button  class="bt_style" type="button" onclick="window.location.href='{% url 'delete_project' pk=project.pk %}'">Delete</button>
+
+  <h2>Protocols:</h2>
+    <ul>
+        {% for protocol in protocols %}
+            <li>
+                {{ protocol.name }} - {{ protocol.created_at }}
+                {% if protocol.file %}
+                     <button class="bt_style" onclick="window.location.href='{{ protocol.file.url }}'">Open</button><!-- Кнопка завантаження -->
+                {% else %}
+                    No file available
+                {% endif %}
+            </li>
+        {% empty %}
+            <li>No protocols found for this project.</li>
+        {% endfor %}
+    </ul>
+    <button  class="bt_style" type="button" onclick="window.location.href='{% url 'project_list' %}'">Back to Project List</button>
+  {% endblock %}

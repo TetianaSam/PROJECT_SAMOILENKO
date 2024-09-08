@@ -1,0 +1,19 @@
+{% extends 'master.html' %}
+{% load static %}
+
+
+{% block content %}
+    {% block extra_css %}
+        <link href="{% static 'css/style.css' %}" rel="stylesheet">
+    {% endblock %}
+
+    <h1>Create Project</h1>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button class="bt_style" type="submit">Save</button>
+        <button  class="bt_style" type="button" onclick="window.location.href ='{% url 'project_list' %}'">Back to Project List </button>
+    </form>
+
+{% endblock %}
+

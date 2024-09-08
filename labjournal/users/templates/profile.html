@@ -1,0 +1,31 @@
+{% extends "master.html" %}
+{% load static %}
+
+{% block content %}
+
+{% block extra_css %}
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+{% endblock %}
+
+<div class="content-section">
+    <h2>Profile</h2>
+    <div class="form-group">
+            <label for="profile_image">Current Profile Image:</label><br>
+            {% if user.profile.profile_image %}
+                <img src="{{ user.profile.profile_image.url }}" alt="Profile Image" class="img-thumbnail" style="max-height: 150px;">
+            {% else %}
+                <p>No profile image uploaded.</p>
+            {% endif %}
+        </div>
+
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ user_form.as_p }}
+        {{ profile_form.as_p }}
+
+        <button type="submit" class="bt_style">Update Profile</button>
+    </form>
+</div>
+
+{% endblock content %}

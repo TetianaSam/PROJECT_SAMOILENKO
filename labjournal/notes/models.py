@@ -40,12 +40,10 @@ class Notes(models.Model):
     owner = models.ForeignKey(User, on_delete=models.CASCADE, related_name='owned_notes')
     note_topic = models.CharField(max_length=150)
     note_text = models.TextField()  # Changed to TextField for better handling of long text
-
     projects = models.ManyToManyField(Project, related_name='notes', blank=True)
     protocols = models.ManyToManyField(Protocol, related_name='notes', blank=True)
     reagents = models.ManyToManyField(Reagents, related_name='notes', blank=True)
     consumables = models.ManyToManyField(Consumables, related_name='notes', blank=True)
-
     access_level = models.CharField(max_length=10, choices=ACCESS_CHOICES, default=READ)
 
     def __str__(self):

@@ -15,8 +15,7 @@ class ProjectForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.fields['file'].required = False  # Робимо поле файлу необов'язковим
-
+        self.fields['file'].required = False
 class ProjectAccessForm(forms.ModelForm):
     class Meta:
         model = ProjectAccess
@@ -26,8 +25,7 @@ class ProjectAccessForm(forms.ModelForm):
         project = kwargs.pop('project', None)
         super().__init__(*args, **kwargs)
         if project:
-            # Фільтрувати користувачів, щоб показати тільки тих, хто ще не має доступу
-            self.fields['user'].queryset = User.objects.exclude(projectaccess__project=project)
+          self.fields['user'].queryset = User.objects.exclude(projectaccess__project=project)
 
 
 class SearchForm(forms.Form):

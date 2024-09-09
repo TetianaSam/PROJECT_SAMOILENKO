@@ -22,7 +22,7 @@ def notes_list(request):
         filters = Q()
 
         if date_from:
-            filters &= Q(created_at__gte=date_from)  # Use &= to ensure all conditions are met
+            filters &= Q(created_at__gte=date_from)
 
         if date_to:
             filters &= Q(created_at__lte=date_to)
@@ -31,9 +31,7 @@ def notes_list(request):
             filters &= Q(note_topic__icontains=note_topic)
 
         notes = notes.filter(filters).distinct()
-
-        # Validate and restrict sort_by values to prevent potential security issues
-        allowed_sort_fields = ['created_at', 'note_topic']  # Example fields
+        allowed_sort_fields = ['created_at', 'note_topic']
         if sort_by in allowed_sort_fields:
             notes = notes.order_by(sort_by)
 
@@ -58,10 +56,7 @@ def create_note(request):
                     file_instance.note = note
                     file_instance.save()
 
-            # Create an entry for note access, giving the user edit permissions
             NoteAccess.objects.create(note=note, user=request.user, access_level=NoteAccess.WRITE)
-
-            # Redirect to notes list page
             return redirect('notes_list')
 
     else:
@@ -124,7 +119,6 @@ def view_note(request, pk):
     ).exists():
         return HttpResponseForbidden("You are not allowed to view this note.")
 
-    # Отримання всіх проектів, протоколів, реагентів і витратних матеріалів
     projects = note.projects.all()
     protocols = note.protocols.all()
     reagents = note.reagents.all()

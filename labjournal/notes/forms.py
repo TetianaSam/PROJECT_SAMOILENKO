@@ -35,8 +35,7 @@ class NoteAccessForm(forms.ModelForm):
         note = kwargs.pop('note', None)
         super().__init__(*args, **kwargs)
         if note:
-            # Фільтрувати користувачів, щоб показати тільки тих, хто ще не має доступу до цієї нотатки
-            self.fields['user'].queryset = User.objects.exclude(noteaccess__note=note)
+           self.fields['user'].queryset = User.objects.exclude(noteaccess__note=note)
 class SearchForm(forms.Form):
     query = forms.CharField(required=False, label='Search')
     date_from = forms.DateField(required=False, widget=forms.TextInput(attrs={'type': 'date'}))

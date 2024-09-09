@@ -28,17 +28,15 @@ def create_project(request):
     if request.method == 'POST':
         form = ProjectForm(request.POST, request.FILES)
         if form.is_valid():
-            # Зберігаємо проект, але не виконуємо збереження власника
             project = form.save(commit=False)
             project.owner = request.user
             project.save()
 
-            # Додаємо власника проекту з правами редагування
             ProjectAccess.objects.create(project=project, user=request.user, access_level=ProjectAccess.WRITE)
 
-            return redirect('project_list')  # Перенаправлення на список проектів
+            return redirect('project_list')
         else:
-            print(form.errors)  # Друк помилок форми для налагодження
+            print(form.errors)
     else:
         form = ProjectForm()
 
@@ -90,14 +88,12 @@ def remove_project_access(request, project_id, user_id):
 def view_project(request, pk):
     project = get_object_or_404(Project, pk=pk)
 
-    # Перевірка прав доступу для перегляду
     if project.owner != request.user and not ProjectAccess.objects.filter(project=project, user=request.user,
                                                                           access_level__in=[ProjectAccess.READ,
                                                                                             ProjectAccess.WRITE]).exists():
         return HttpResponseForbidden("You are not allowed to view this project.")
 
-    protocols = project.protocols.all()  # Використовуємо related_name='protocols' з ManyToManyField
-#notes = note.notes.all()TO DO?????
+    protocols = project.protocols.all()
     return render(request, 'view_project.html', {'project': project, 'protocols': protocols})
 
 @login_required

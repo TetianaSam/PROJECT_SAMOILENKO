@@ -10,7 +10,7 @@
     <link href="{% static 'css/style.css' %}" rel="stylesheet">
 {% endblock %}
 
- <h1>Edit Reagent Properties <button class="bt_style" onclick="window.location.href='{% url 'view_reagent' pk=reagent.pk %}'">Back</button></h1>
+ <h1>Edit Reagent Properties </h1>
 
   <form method="post" enctype="multipart/form-data">
     {% csrf_token %}

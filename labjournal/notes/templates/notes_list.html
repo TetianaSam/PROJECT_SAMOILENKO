@@ -8,54 +8,46 @@
     <link href="{% static 'css/style.css' %}" rel="stylesheet">
 {% endblock %}
 
-    <h2>Notes List</h2>
-    <form method="get" action="{% url 'notes_list' %}">
-        {{ search_form.as_p }}
-        <button class="bt_style" type="submit">Search</button>
-    </form>
-        <table>
-            <thead>
-                <tr>
-                    <th>Date</th>
-                    <th>Created</th>
-                    <th>Updated</th>
-                    <th>Owner</th>
-                    <th>Topic</th>
-                    <th>Text</th>
-                    <th>Project</th>
-                    <th>Protocols</th>
-                    <th>Reagents</th>
-                    <th>Consumables</th>
-                    <th>File</th>
-                    <th>Actions</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for note in notes %}
-                    <td>{{ note.date_of_action }}</td>
-                    <td>{{ note.created_at }}</td>
-                    <td>{{ note.updated_at }}</td>
-                    <td>{{ note.owner }}</td>
-                    <td>{{ note.note_topic}}</td>
-                    <td>{{ note.note_text }}</td>
-                    <td>{{ note.project }}</td>
-                    <td>{{ note.protocol }}</td>
-                    <td>{{ note.reagent }}</td>
-                    <td>{{ note.consumable }}</td>
-                    <td>
-                        <button class="bt_style" type="button" onclick="window.location.href='{% url 'edit_note' pk=note.pk %}'">Edit</a></button>
-                        <button class="bt_style" type="button" onclick="window.location.href='{% url 'delete_note' pk=note.pk %}'">Delete</a></button>
-                        <button class="bt_style" type="button" onclick="window.location.href='{% url 'view_note' pk=note.pk %}'">Preview</a></button>
-                    </td>
-                </tr>
-                {% empty %}
-                <tr>
-                    <td colspan="5">Notes not found.</td>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-        <button class="bt_style" type="button" onclick="window.location.href='{% url 'create_note' %}'">Make New Note</button>
-        <button class="bt_style" type="button" onclick="window.location.href='{% url 'my_lab_journals' %}'">Back</button>
+<h2>Notes List</h2>
+<form method="get" action="{% url 'notes_list' %}" class="search-form">
+    {{ search_form.as_p }}
+    <button class="bt_style" type="submit">Search</button>
+</form>
+
+<table>
+    <thead>
+        <tr>
+            <th>Date</th>
+            <th>Created</th>
+            <th>Updated</th>
+            <th>Owner</th>
+            <th>Topic</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for note in notes %}
+            <tr>
+                <td>{{ note.date_of_action }}</td>
+                <td>{{ note.created_at }}</td>
+                <td>{{ note.updated_at }}</td>
+                <td>{{ note.owner.username }}</td>
+                <td>{{ note.note_topic }}</td>
+                <td>
+                    <button class="bt_style" type="button" onclick="window.location.href='{% url 'edit_note' pk=note.pk %}'">Edit</button>
+                    <button class="bt_style" type="button" onclick="window.location.href='{% url 'delete_note' pk=note.pk %}'">Delete</button>
+                    <button class="bt_style" type="button" onclick="window.location.href='{% url 'view_note' pk=note.pk %}'">Preview</button>
+                </td>
+            </tr>
+        {% empty %}
+        <tr>
+            <td colspan="6">Notes not found.</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<button class="bt_style" type="button" onclick="window.location.href='{% url 'create_note' %}'">Make New Note</button>
+<button class="bt_style" type="button" onclick="window.location.href='{% url 'my_lab_journals' %}'">Back</button>
 
 {% endblock %}

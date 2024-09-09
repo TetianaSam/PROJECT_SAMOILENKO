@@ -129,3 +129,19 @@ def delete_project(request, pk):
         return redirect('project_list')
     return render(request, 'confirm_delete_project.html', {'project': project})
 
+@login_required
+def project_notes(request, project_id):
+    project = get_object_or_404(Project, id=project_id)
+
+    # Check permissions
+    if project.owner != request.user and not ProjectAccess.objects.filter(
+        project=project, user=request.user, access_level__in=[ProjectAccess.READ, ProjectAccess.WRITE]
+    ).exists():
+        return HttpResponseForbidden("You are not allowed to view this project.")
+
+    notes = project.notes.all()
+
+    return render(request, 'project_notes.html', {
+        'project': project,
+        'notes': notes
+    })

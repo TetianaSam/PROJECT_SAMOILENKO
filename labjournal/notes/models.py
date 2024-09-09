@@ -16,6 +16,16 @@ class UserFile(models.Model):
     def __str__(self):
         return self.title
 
+
+class NoteFile(models.Model):
+    note = models.ForeignKey('Notes', on_delete=models.CASCADE, related_name='files')
+    file = models.FileField(upload_to='notes/files/')
+
+    uploaded_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"File for {self.note.note_topic} uploaded on {self.uploaded_at}"
+
 class Notes(models.Model):
     READ = 'read'
     WRITE = 'write'
@@ -30,11 +40,12 @@ class Notes(models.Model):
     owner = models.ForeignKey(User, on_delete=models.CASCADE, related_name='owned_notes')
     note_topic = models.CharField(max_length=150)
     note_text = models.TextField()  # Changed to TextField for better handling of long text
-    file = models.FileField(upload_to='notes/', blank=True, null=True)
-    project = models.ForeignKey(Project, on_delete=models.CASCADE, related_name='notes')
-    protocol = models.ForeignKey(Protocol, on_delete=models.CASCADE, related_name='notes')
-    reagent = models.ForeignKey(Reagents, on_delete=models.CASCADE, related_name='notes')
-    consumable = models.ForeignKey(Consumables, on_delete=models.CASCADE, related_name='notes')
+
+    projects = models.ManyToManyField(Project, related_name='notes', blank=True)
+    protocols = models.ManyToManyField(Protocol, related_name='notes', blank=True)
+    reagents = models.ManyToManyField(Reagents, related_name='notes', blank=True)
+    consumables = models.ManyToManyField(Consumables, related_name='notes', blank=True)
+
     access_level = models.CharField(max_length=10, choices=ACCESS_CHOICES, default=READ)
 
     def __str__(self):
@@ -44,6 +55,7 @@ class Notes(models.Model):
         indexes = [
             models.Index(fields=['owner', 'note_topic']),
         ]
+
 
 class NoteAccess(models.Model):
     READ = 'read'
@@ -62,4 +74,3 @@ class NoteAccess(models.Model):
 
     def __str__(self):
         return f'{self.user.username} - {self.note.note_topic} ({self.get_access_level_display()})'
-

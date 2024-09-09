@@ -1,0 +1,25 @@
+{% extends 'master.html' %}
+{% load static %}
+
+{% block content %}
+{% block extra_css %}
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+{% endblock %}
+
+    <h1>Notes for {{ project.name }}</h1>
+
+    <ul>
+        {% for note in notes %}
+        <li>
+            <a href="{% url 'view_note' pk=note.id %}">
+                {{ note.note_topic }}: {{ note.note_text|slice:":200" }}{% if note.note_text|length > 200 %}...{% endif %}
+            </a>
+        </li>
+        {% empty %}
+        <li>No notes available.</li>
+        {% endfor %}
+    </ul>
+
+    <button class="bt_style" onclick="window.location.href='{% url 'project_detail' pk=project.id %}'">Back to project</button>
+{% endblock %}

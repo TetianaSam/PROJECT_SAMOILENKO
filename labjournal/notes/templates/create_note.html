@@ -8,12 +8,18 @@
     {% endblock %}
 
     <h1>Create Note</h1>
-    <form method="post" enctype="multipart/form-data">
+<form method="post" enctype="multipart/form-data">
         {% csrf_token %}
         {{ form.as_p }}
+        {{ file_formset.management_form }}
+        {% for form in file_formset %}
+            {{ form.as_p }}
+        {% endfor %}
         <button class="bt_style" type="submit">Save</button>
-        <button  class="bt_style" type="button" onclick="window.location.href ='{% url 'notes_list'%}'">Back</button>
-    </form>
+</form>
+
+    <button  class="bt_style" type="button" onclick="window.location.href ='{% url 'notes_list'%}'">Back</button>
+
 
 {% endblock %}
 

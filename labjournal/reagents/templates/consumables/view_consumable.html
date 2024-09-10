@@ -36,7 +36,7 @@
                 <td>{{ consumable.name }}</td>
                 <td>{{ consumable.units }}</td>
                 <td>{{ consumable.amount }}</td>
-                <td>{{ consumable.storage_temperature }}</td>
+                <td>{{ consumable.storage_temp }}</td>
                 <td>{{ consumable.cat_number }}</td>
                 <td>{{ consumable.lot }}</td>
                 <td>{{ consumable.producer }}</td>
@@ -45,6 +45,11 @@
                 <td>{{ consumable.expiration_date }}</td>
                 <td>{{ consumable.file }}</td>
                 <td>
+
+                    {% if user == consumable.owner %}
+                        <button class="bt_style" type="button" onclick="window.location.href='{% url 'manage_consumable_access' consumable.pk %}'">Manage Access</button>
+                    {% endif %}
+
                     <button class="bt_style" onclick="window.location.href='{% url 'edit_consumable' consumable.pk %}'">Edit</button>
                     <button class="bt_style" onclick="if (confirm('Are you sure?')) { window.location.href='{% url 'delete_consumable' consumable.pk %}'; }">Delete</button>
                 </td>

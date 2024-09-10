@@ -11,7 +11,7 @@ class UserFile(models.Model):
         return self.title
 
 class Reagents(models.Model):
-    owner = models.ForeignKey(User, on_delete=models.CASCADE, related_name='owned_reagents')
+    owner = models.ForeignKey(User, on_delete=models.CASCADE)
     name = models.CharField(max_length=100)
     units = models.CharField(max_length=100)
     amount =models.IntegerField(default=0)
@@ -47,7 +47,7 @@ class ReagentsAccess(models.Model):
         return f'{self.user.username} - {self.reagent.name} ({self.get_access_level_display()})'
 
 class Consumables(models.Model):
-    owner = models.ForeignKey(User, on_delete=models.CASCADE, related_name='owned_consumables')
+    owner = models.ForeignKey(User, on_delete=models.CASCADE)
     name = models.CharField(max_length=100)
     units = models.CharField(max_length=100)
     amount = models.IntegerField(default=0)

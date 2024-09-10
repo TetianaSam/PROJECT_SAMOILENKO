@@ -5,9 +5,9 @@
 
 {% block content %}
 
-{% block extra_css %}
-    <link href="{% static 'css/style.css' %}" rel="stylesheet">
-{% endblock %}
+    {% block extra_css %}
+        <link href="{% static 'css/style.css' %}" rel="stylesheet">
+    {% endblock %}
 
     <h1>Confirm Delete</h1>
     <p>Are you sure you want to delete the project "{{ project.name }}"?</p>

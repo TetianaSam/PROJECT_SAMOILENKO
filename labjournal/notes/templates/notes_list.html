@@ -3,10 +3,10 @@
 
 {% block content %}
 
-{% block extra_css %}
-    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
-    <link href="{% static 'css/style.css' %}" rel="stylesheet">
-{% endblock %}
+    {% block extra_css %}
+
+        <link href="{% static 'css/style.css' %}" rel="stylesheet">
+    {% endblock %}
 
 <h2>Notes List</h2>
 <form method="get" action="{% url 'notes_list' %}" class="search-form">

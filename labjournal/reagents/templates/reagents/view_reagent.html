@@ -43,6 +43,9 @@
                 <td>{{ reagent.expiration_date }}</td>
                 <td>{{ reagent.file }}</td>
                 <td>
+                    {% if user == reagent.owner %}
+                        <button class="bt_style" type="button" onclick="window.location.href='{% url 'manage_reagent_access' reagent.pk %}'">Manage Access</button>
+                    {% endif %}
 
                     <button class="bt_style" onclick="window.location.href='{% url 'edit_reagent' reagent.pk %}'">Edit</button>
                     <button class="bt_style" onclick="if (confirm('Are you sure?')) { window.location.href='{% url 'delete_reagent' reagent.pk %}'; }">Delete</button>

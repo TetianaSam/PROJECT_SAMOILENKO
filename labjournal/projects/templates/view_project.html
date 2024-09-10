@@ -15,16 +15,15 @@
     <p><strong>File:</strong> <a href="{{ project.file.url }}" target="_blank">View File</a></p>
   {% endif %}
 
-  <!-- Manage Access Button -->
   {% if user == project.owner %}
     <button class="bt_style" type="button" onclick="window.location.href='{% url 'manage_project_access' project.pk %}'">Manage Access</button>
   {% endif %}
 
-  <!-- Edit and Delete Buttons -->
+
   <button class="bt_style" type="button" onclick="window.location.href='{% url 'edit_project' pk=project.pk %}'">Edit</button>
   <button class="bt_style" type="button" onclick="window.location.href='{% url 'delete_project' pk=project.pk %}'">Delete</button>
 
-  <!-- View Notes Button -->
+
   <button class="bt_style" type="button" onclick="window.location.href='{% url 'project_notes' project_id=project.pk %}'">View All Notes</button>
 
   <h2>Protocols:</h2>

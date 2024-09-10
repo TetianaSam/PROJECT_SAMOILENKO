@@ -2,9 +2,11 @@
 {% load bootstrap5 %}
 
 
-  {% block extra_css %}
-   <link rel="stylesheet" href="{% static 'css/style.css' %}">
-  {% endblock %}
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+{% endblock %}
 
   {% bootstrap_css %}
   {% bootstrap_javascript %}

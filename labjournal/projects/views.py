@@ -83,7 +83,7 @@ def remove_project_access(request, project_id, user_id):
         messages.success(request, f'Access for user {access.user.username} has been removed.')
         return redirect('manage_project_access', pk=project_id)
 
-    return render(request, 'confirm_remove_access.html', {'access': access, 'project': project})
+    return render(request, 'confirm_remove_access_consumable.html', {'access': access, 'project': project})
 @login_required
 def view_project(request, pk):
     project = get_object_or_404(Project, pk=pk)

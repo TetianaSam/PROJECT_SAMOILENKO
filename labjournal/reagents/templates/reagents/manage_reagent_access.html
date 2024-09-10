@@ -1,7 +1,15 @@
 {% extends 'master.html' %}
+{% load static %}
 
+{% block title %}View reagent{% endblock %}
 
 {% block content %}
+
+{% block extra_css %}
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+{% endblock %}
+
 <h1>Manage Access</h1>
 
   <h2>Existing Access</h2>
@@ -20,7 +28,7 @@
   <form method="post">
     {% csrf_token %}
     {{ form.as_p }}
-    <button type="submit">Add Access</button>
+    <button class="bt_style" type="submit">Add Access</button>
   </form>
-  <a href="{% url 'reagents_list' %}">Back to List</a>
+  <button class="bt_style"onclick="window.location.href='{% url 'reagents_list' %}'">Back to List</button>
 {% endblock %}

@@ -1,0 +1,32 @@
+{% extends 'master.html' %}
+{% load static %}
+
+{% block content %}
+
+{% block extra_css %}
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+{% endblock %}
+
+<h1>Manage Access</h1>
+
+  <h2>Existing Access</h2>
+  <ul>
+    {% for access in existing_access %}
+      <li>
+        {{ access.user.username }} - {{ access.get_access_level_display }}
+        <a href="{% url 'remove_consumable_access' consumable.pk access.user.pk %}" onclick="return confirm('Are you sure?');">Remove</a>
+      </li>
+    {% empty %}
+      <li>No access permissions set.</li>
+    {% endfor %}
+  </ul>
+
+  <h2>Add Access</h2>
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button class="bt_style"  type="submit">Add Access</button>
+  </form>
+  <button class="bt_style" onclick="window.location.href='{% url 'consumables_list' %}'">Back to List</button>
+{% endblock %}

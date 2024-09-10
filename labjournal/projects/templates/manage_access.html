@@ -21,9 +21,8 @@
     <ul>
         {% for access in existing_access %}
             <li>{{ access.user.username }} - {{ access.get_access_level_display }}
-                <form method="post" action="{% url 'remove_project_access' project.id access.user.id %}">
+                <form method="post" action="{% url 'remove_project_access' project.id access.user.id %}" onsubmit="return confirmDelete();">
                     {% csrf_token %}
-
                     <button  class="bt_style" type="submit">Remove Access</button>
                 </form>
             </li>
@@ -32,4 +31,12 @@
 
     <button  class="bt_style" type="button" onclick="window.location.href='{% url 'project_list' %}'">Back to Project List</button>
 
+{% endblock %}
+
+{% block extra_js %}
+    <script>
+        function confirmDelete() {
+            return confirm('Are you sure you want to remove access for this user?');
+        }
+    </script>
 {% endblock %}

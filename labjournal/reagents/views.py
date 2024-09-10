@@ -78,11 +78,12 @@ def create_consumable(request):
 def manage_reagent_access(request, pk):
     reagent = get_object_or_404(Reagents, pk=pk)
 
+    # Тут перевіряємо правильний атрибут власника
     if reagent.owner != request.user:
         return HttpResponseForbidden("You are not allowed to manage access for this reagent.")
 
     if request.method == 'POST':
-        form = ReagentsAccessForm(request.POST, instance=reagent)
+        form = ReagentsAccessForm(request.POST)
         if form.is_valid():
             access = form.save(commit=False)
             access.reagent = reagent
@@ -94,7 +95,7 @@ def manage_reagent_access(request, pk):
 
     existing_access = reagent.access_permissions.all()
 
-    return render(request, 'reagents/manage_access.html', {
+    return render(request, 'reagents/manage_reagent_access.html', {
         'reagent': reagent,
         'form': form,
         'existing_access': existing_access
@@ -109,7 +110,7 @@ def manage_consumable_access(request, pk):
         return HttpResponseForbidden("You are not allowed to manage access for this consumable.")
 
     if request.method == 'POST':
-        form = ConsumablesAccessForm(request.POST, instance=consumable)
+        form = ConsumablesAccessForm(request.POST)
         if form.is_valid():
             access = form.save(commit=False)
             access.consumable = consumable
@@ -121,7 +122,12 @@ def manage_consumable_access(request, pk):
 
     existing_access = consumable.access_permissions.all()
 
-    return render(request, 'consumables/manage_access.html', {
+    return render(request, 'consumables/manage_consumable_access.html', {
+        'consumable': consumable,
+        'form': form,
+        'existing_access': existing_access
+    })
+    return render(request, 'consumables/manage_consumable_access.html', {
         'consumable': consumable,
         'form': form,
         'existing_access': existing_access
@@ -141,7 +147,7 @@ def remove_reagent_access(request, reagent_id, user_id):
         messages.success(request, f'Access for user {access.user.username} has been removed.')
         return redirect('manage_reagent_access', pk=reagent_id)
 
-    return render(request, 'reagents/confirm_remove_access.html', {'access': access, 'reagent': reagent})
+    return render(request, 'reagents/confirm_remove_access_reagent.html', {'access': access, 'reagent': reagent})
 
 
 @login_required
@@ -155,9 +161,10 @@ def remove_consumable_access(request, consumable_id, user_id):
     if request.method == 'POST':
         access.delete()
         messages.success(request, f'Access for user {access.user.username} has been removed.')
-        return redirect('manage_consumable_access', pk=consumable_id)
+        return redirect('manage_consumable_access', pk=consumable.id)
 
-    return render(request, 'consumables/confirm_remove_access.html', {'access': access, 'consumable': consumable})
+    return render(request, 'consumables/confirm_remove_access_consumable.html', {'access': access, 'consumable': consumable})
+
 
 
 @login_required
@@ -249,4 +256,4 @@ def delete_consumable(request, pk):
         consumable.delete()
         return redirect('consumables_list')
 
-    return render(request, 'consumables/confirm_delete_project.html', {'consumable': consumable})
+    return render(request, 'consumables/confirm_delete_consumable.html', {'consumable': consumable})
